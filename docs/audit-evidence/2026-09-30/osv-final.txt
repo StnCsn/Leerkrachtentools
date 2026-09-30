@@ -1,0 +1,2 @@
+OSV controleerde 960 productie- en buildpackages.
+Geen bekende kwetsbaarheden gevonden.

@@ -1,0 +1,4 @@
+OSV controleerde 960 productie- en buildpackages.
+2 bekende kwetsbaarheden gevonden:
+- @grpc/grpc-js@1.14.4: GHSA-m9gg-hp2v-232j
+- dompurify@3.4.15: GHSA-p98j-92pf-mc4p

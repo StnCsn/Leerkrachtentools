@@ -35,6 +35,7 @@ zijn opgenomen in de huidige pre-release:
 
 | Rapport | Scope |
 | --- | --- |
+| [Aanvullende cloudaudit 30 september](cloud-security-audit-2026-09-30.md) | Dependency-advisories, nieuwe races/limits, synthetische isolatie/kosten/herstel en actuele testbewijzen; kernelacceptatie geblokkeerd |
 | [Securityaudit 18 september](security-audit-2026-09-18.md) | Documentisolatie, auth, quota, Linux-grenzen, browsers en restore; gemerged via PR #11 |
 | [Privacy en API-kosten](privacy-cost-review-2026-09-18.md) | Sessiewissels, caches en gedeelde kostenplafonds; gemerged via PR #12 |
 | [Dependency- en privacyvalidatie](dependency-security-validation-2026-09-19.md) | SDK-responsegrenzen, analyticsopslag en dependency-upgrades; gemerged via PR #19 |

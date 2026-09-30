@@ -1,0 +1,92 @@
+Cloudaudit 2026-09-30; alleen synthetische data en lokale/onderschepte transports.
+Begin: 4d32c97cd069302f564ea18754178e779487e382
+Codecommit: 8696d08de2da14563f3c26905e3cb688a3780ddf
+Node 22.23.3; project- en browserwrappers geïnspecteerd en behouden.
+Geen kernel/systemd/cgroupacceptatie: GEBLOKKEERD; checks ongewijzigd.
+
+regressions-before.log:
+Test Files  2 failed (2)
+Tests  3 failed | 2 passed (5)
+Duration  851ms (tests 45%, transform 37%, setup 16%, import 2%, worker 1%)
+
+public-limits-before.log:
+Test Files  1 failed (1)
+Tests  4 failed (4)
+Duration  707ms (import 45%, transform 44%, tests 5%, setup 5%, worker 1%)
+
+key-revalidation-before.log:
+Test Files  1 failed (1)
+Tests  5 failed | 1 passed (6)
+Duration  478ms (transform 53%, tests 21%, import 17%, setup 8%, worker 1%)
+
+writer-race-before.log:
+Test Files  1 failed (1)
+Tests  5 failed (5)
+Duration  388ms (transform 63%, tests 19%, setup 12%, import 4%, worker 2%)
+
+dompurify-before.log:
+Regressie na afterSanitizeElements/afterSanitizeAttributes: actual [false,false], expected [true,true]; exit 1 op versie 3.4.15.
+
+full-tests-final.log:
+Test Files  150 passed (150)
+Tests  675 passed | 1 skipped (676)
+Duration  41.73s (tests 81%, import 10%, transform 5%, setup 4%, worker 1%)
+
+standalone-final.log:
+HTTP security passed: authentication and CSRF on 25 endpoints; forged proxy headers, missing Origin and invalid API key rejected.
+HTTP boundary matrix passed: real methods, opaque/cross-site origins, malformed JSON and cross-account selectors; SQL metacharacters remain data.
+Browser security passed: shared storage purge, offline masking, history return, account switch, logout across two tabs.
+Browser storage edge cases passed: reopen after logout and explicit fail-closed storage denial.
+Cold restore passed: new app instance accepts restored session, decrypts stored credential, rejects revoked key and preserves quota, AI budget and avatar.
+Isolated B2B routes, DOCX export/reimport and avatar normalization passed.
+Standalone smoke passed: session, PDF parsing, malformed upload and logout.
+
+startup-final.log:
+Invalid standalone startup rejected: missing auth.
+Invalid standalone startup rejected: missing encryption.
+Invalid standalone startup rejected: identical secrets.
+Invalid standalone startup rejected: invalid origin.
+Invalid standalone startup rejected: public HTTP.
+Invalid standalone startup rejected: public parser missing.
+Invalid standalone startup rejected: public local parser flag.
+
+browser-session-chromium-final.log:
+Client session isolation passed: committed IndexedDB writes, account separation and rejection of late reads/writes across logout and re-login.
+Shared-device query cache passed: account-scoped results in memory, no sessionStorage persistence.
+Legacy ten-result browser cache passed (chromium): at most five matches and four alternatives.
+
+browser-analytics-chromium.log:
+Analytics consent wire checks passed: disabled configuration, before consent, reject, allow, withdrawal, reload, expiry; no content, identity, retries or external scripts.
+
+browser-preview-chromium.log:
+DOMPurify detached-subtree regression passed (chromium).
+Preview security passed (chromium): malicious DOCX CSS isolated; scripts, resource loads and link navigation blocked.
+
+browser-session-firefox-final.log:
+Client session isolation passed: committed IndexedDB writes, account separation and rejection of late reads/writes across logout and re-login.
+Shared-device query cache passed: account-scoped results in memory, no sessionStorage persistence.
+Legacy ten-result browser cache passed (firefox): at most five matches and four alternatives.
+
+browser-analytics-firefox.log:
+Analytics consent wire checks passed: disabled configuration, before consent, reject, allow, withdrawal, reload, expiry; no content, identity, retries or external scripts.
+
+browser-preview-firefox.log:
+DOMPurify detached-subtree regression passed (firefox).
+Preview security passed (firefox): malicious DOCX CSS isolated; scripts, resource loads and link navigation blocked.
+
+browser-session-webkit-final.log:
+Client session isolation passed: committed IndexedDB writes, account separation and rejection of late reads/writes across logout and re-login.
+Shared-device query cache passed: account-scoped results in memory, no sessionStorage persistence.
+Legacy ten-result browser cache passed (webkit): at most five matches and four alternatives.
+
+browser-analytics-webkit.log:
+Analytics consent wire checks passed: disabled configuration, before consent, reject, allow, withdrawal, reload, expiry; no content, identity, retries or external scripts.
+
+browser-preview-webkit.log:
+DOMPurify detached-subtree regression passed (webkit).
+Preview security passed (webkit): malicious DOCX CSS isolated; scripts, resource loads and link navigation blocked.
+
+Eindcontrole voorafgaand aan rapport: lint/typegen/typecheck/build exit 0; audit 960 packages/0 advisories.
+Corpora-check exit 1: 14 ontbrekende vereiste bestanden; geen downloads.
+Volledige lokale logs staan onder /workspace/.onboarding/audit-2026-09-30, buiten Git.
+De PR-beschrijving legt de uiteindelijke geteste branchcommit vast.

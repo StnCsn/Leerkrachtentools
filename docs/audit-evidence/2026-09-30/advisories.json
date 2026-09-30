@@ -1,0 +1,2080 @@
+[
+  {
+    "id": "GHSA-2gqq-gqf2-x968",
+    "summary": "undici vulnerable to response truncation via oversized chunked responses in the dump interceptor",
+    "affected": [
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "7.1.0"
+              },
+              {
+                "fixed": "7.29.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-2gqq-gqf2-x968/GHSA-2gqq-gqf2-x968.json"
+        }
+      },
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "8.0.0"
+              },
+              {
+                "fixed": "8.10.2"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-2gqq-gqf2-x968/GHSA-2gqq-gqf2-x968.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/security/advisories/GHSA-2gqq-gqf2-x968"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-84947"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/21693f406f0142f3504192e9f9b022dcf84782ae"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/6d583124e7cf60b640097d64144ed633cc450584"
+      },
+      {
+        "type": "WEB",
+        "url": "https://cna.openjsf.org/security-advisories.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/nodejs/undici"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v7.29.1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v8.10.2"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-2jfj-6hjv-fm6j",
+    "summary": "undici vulnerable to cross-user cookie disclosure via Set-Cookie caching in shared caches",
+    "affected": [
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "7.0.0"
+              },
+              {
+                "fixed": "7.29.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-2jfj-6hjv-fm6j/GHSA-2jfj-6hjv-fm6j.json"
+        }
+      },
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "8.0.0"
+              },
+              {
+                "fixed": "8.10.2"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-2jfj-6hjv-fm6j/GHSA-2jfj-6hjv-fm6j.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/security/advisories/GHSA-2jfj-6hjv-fm6j"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-84933"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/b6c5a00252c37da9dd2db9bead053bb843e1f988"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/cb75bbb34224a968b4ad80cab8b7aba5e0b3b28a"
+      },
+      {
+        "type": "WEB",
+        "url": "https://cna.openjsf.org/security-advisories.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/nodejs/undici"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v7.29.1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v8.10.2"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-2vr4-cq9g-pvrc",
+    "summary": "ip-address: no classifier recognizes the NAT64 local-use range 64:ff9b:1::/48, allowing SSRF and trust-boundary bypass",
+    "affected": [
+      {
+        "package": {
+          "name": "ip-address",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/ip-address"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "10.2.0"
+              },
+              {
+                "fixed": "10.5.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "last_known_affected_version_range": "<= 10.5.0",
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-2vr4-cq9g-pvrc/GHSA-2vr4-cq9g-pvrc.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/beaugunderson/ip-address/security/advisories/GHSA-2vr4-cq9g-pvrc"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-101910"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/beaugunderson/ip-address/commit/ab3dc88bcf5374344168a2ba075ca7ac4ff257f8"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/beaugunderson/ip-address"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/beaugunderson/ip-address/releases/tag/v10.5.1"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-3wwx-pv8p-q78v",
+    "summary": "undici vulnerable to Denial of Service via unhandled error in WebSocket permessage-deflate decompression",
+    "affected": [
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "6.25.0"
+              },
+              {
+                "fixed": "6.28.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-3wwx-pv8p-q78v/GHSA-3wwx-pv8p-q78v.json"
+        }
+      },
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "7.28.0"
+              },
+              {
+                "fixed": "7.29.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-3wwx-pv8p-q78v/GHSA-3wwx-pv8p-q78v.json"
+        }
+      },
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "8.1.0"
+              },
+              {
+                "fixed": "8.10.2"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-3wwx-pv8p-q78v/GHSA-3wwx-pv8p-q78v.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/security/advisories/GHSA-3wwx-pv8p-q78v"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-85024"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/07c60d9c7099a910451244afe42861bbdbdd974c"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/4411a238a98e8791da5fff10cc9e3578a7668ed6"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/63cf698b611fecc6ee0a17b185b930051e4b982f"
+      },
+      {
+        "type": "WEB",
+        "url": "https://cna.openjsf.org/security-advisories.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/nodejs/undici"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v6.28.1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v7.29.1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v8.10.2"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-3xpg-4rpp-hhhm",
+    "summary": "undici vulnerable to Denial of Service via unbounded decompression of compressed responses",
+    "affected": [
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "7.15.0"
+              },
+              {
+                "fixed": "7.29.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-3xpg-4rpp-hhhm/GHSA-3xpg-4rpp-hhhm.json"
+        }
+      },
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "8.0.0"
+              },
+              {
+                "fixed": "8.10.2"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-3xpg-4rpp-hhhm/GHSA-3xpg-4rpp-hhhm.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/security/advisories/GHSA-3xpg-4rpp-hhhm"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-84890"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/2c7d7e1227043c644c4c32cfd1e276f4fd4fcb11"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/7aac7f12f757844763c8b8f1ab6e305e80d55838"
+      },
+      {
+        "type": "WEB",
+        "url": "https://cna.openjsf.org/security-advisories.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/nodejs/undici"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v7.29.1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v8.10.2"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-58mr-gqgx-xq4g",
+    "summary": "fast-uri vulnerable to host confusion via an unclosed bracket in the URI authority",
+    "affected": [
+      {
+        "package": {
+          "name": "fast-uri",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/fast-uri"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "2.4.5"
+              },
+              {
+                "fixed": "2.4.6"
+              }
+            ]
+          }
+        ],
+        "versions": [
+          "2.4.5"
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-58mr-gqgx-xq4g/GHSA-58mr-gqgx-xq4g.json"
+        }
+      },
+      {
+        "package": {
+          "name": "fast-uri",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/fast-uri"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "3.1.6"
+              },
+              {
+                "fixed": "3.1.7"
+              }
+            ]
+          }
+        ],
+        "versions": [
+          "3.1.6"
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-58mr-gqgx-xq4g/GHSA-58mr-gqgx-xq4g.json"
+        }
+      },
+      {
+        "package": {
+          "name": "fast-uri",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/fast-uri"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "4.1.3"
+              },
+              {
+                "fixed": "4.1.4"
+              }
+            ]
+          }
+        ],
+        "versions": [
+          "4.1.3"
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-58mr-gqgx-xq4g/GHSA-58mr-gqgx-xq4g.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/security/advisories/GHSA-58mr-gqgx-xq4g"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-84394"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/pull/214"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/commit/e00815236bc94107e44ef1b2f5318a06bac225c0"
+      },
+      {
+        "type": "WEB",
+        "url": "https://cna.openjsf.org/security-advisories.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/fastify/fast-uri"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/releases/tag/v2.4.6"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/releases/tag/v3.1.7"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/releases/tag/v4.1.4"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-6j4f-fj2g-mc7p",
+    "summary": "brace-expansion: DoS via uncontrolled recursion in parseCommaParts causing stack exhaustion",
+    "affected": [
+      {
+        "package": {
+          "name": "brace-expansion",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/brace-expansion"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "4.0.0"
+              },
+              {
+                "fixed": "5.0.10"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-6j4f-fj2g-mc7p/GHSA-6j4f-fj2g-mc7p.json"
+        }
+      },
+      {
+        "package": {
+          "name": "brace-expansion",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/brace-expansion"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "3.0.0"
+              },
+              {
+                "fixed": "3.0.7"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-6j4f-fj2g-mc7p/GHSA-6j4f-fj2g-mc7p.json"
+        }
+      },
+      {
+        "package": {
+          "name": "brace-expansion",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/brace-expansion"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "2.0.0"
+              },
+              {
+                "fixed": "2.1.5"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-6j4f-fj2g-mc7p/GHSA-6j4f-fj2g-mc7p.json"
+        }
+      },
+      {
+        "package": {
+          "name": "brace-expansion",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/brace-expansion"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "1.1.19"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-6j4f-fj2g-mc7p/GHSA-6j4f-fj2g-mc7p.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/juliangruber/brace-expansion/security/advisories/GHSA-6j4f-fj2g-mc7p"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-102276"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/juliangruber/brace-expansion/commit/0bcbfc0a5928c3073d48f42999d1ce4fc1c42fbc"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/juliangruber/brace-expansion/commit/316359e6019c39b3254c8ba8e25dc586a480652c"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/juliangruber/brace-expansion/commit/5171e681c0922b7ae8bfaf9a331e309107be6edc"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/juliangruber/brace-expansion/commit/6735c94873ca570bcdd6a0690033bdd3126379d3"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/juliangruber/brace-expansion"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-8436-99hf-9mmv",
+    "summary": "undici vulnerable to caching and replay of unsafe HTTP method responses",
+    "affected": [
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "7.0.0"
+              },
+              {
+                "fixed": "7.29.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-8436-99hf-9mmv/GHSA-8436-99hf-9mmv.json"
+        }
+      },
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "8.0.0"
+              },
+              {
+                "fixed": "8.10.2"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-8436-99hf-9mmv/GHSA-8436-99hf-9mmv.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/security/advisories/GHSA-8436-99hf-9mmv"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-85008"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/2be07bf97b3022e0324142d31f99f6e019d815e3"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/b61d9432bac7caac51273ad209862e4c0bf935ae"
+      },
+      {
+        "type": "WEB",
+        "url": "https://cna.openjsf.org/security-advisories.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/nodejs/undici"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v7.29.1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v8.10.2"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-h3mg-xc3c-68pw",
+    "summary": "ip-address: Address6 builds a parse diagnostic proportional to the input with no length bound, allowing a single long string to stall or crash the process",
+    "affected": [
+      {
+        "package": {
+          "name": "ip-address",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/ip-address"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "10.7.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "last_known_affected_version_range": "<= 10.7.0",
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-h3mg-xc3c-68pw/GHSA-h3mg-xc3c-68pw.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/beaugunderson/ip-address/security/advisories/GHSA-h3mg-xc3c-68pw"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-101911"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/beaugunderson/ip-address/commit/469ead1231b4cc059f2150c626e1e0c2895c0134"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/beaugunderson/ip-address/commit/8b34a21e0839b37c094066816fb2c2c48a2adcf5"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/beaugunderson/ip-address"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/beaugunderson/ip-address/releases/tag/v10.7.1"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-hrr3-gc8f-f4qj",
+    "summary": "fast-uri vulnerable to inconsistent host case normalization via percent-encoded octets",
+    "affected": [
+      {
+        "package": {
+          "name": "fast-uri",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/fast-uri"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "2.4.7"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-hrr3-gc8f-f4qj/GHSA-hrr3-gc8f-f4qj.json"
+        }
+      },
+      {
+        "package": {
+          "name": "fast-uri",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/fast-uri"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "3.0.0"
+              },
+              {
+                "fixed": "3.1.8"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-hrr3-gc8f-f4qj/GHSA-hrr3-gc8f-f4qj.json"
+        }
+      },
+      {
+        "package": {
+          "name": "fast-uri",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/fast-uri"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "4.0.0"
+              },
+              {
+                "fixed": "4.1.5"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-hrr3-gc8f-f4qj/GHSA-hrr3-gc8f-f4qj.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/security/advisories/GHSA-hrr3-gc8f-f4qj"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-86472"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/commit/5dabb86732aa2a7655e258719970e61e12b6b4d1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://cna.openjsf.org/security-advisories.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/fastify/fast-uri"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/releases/tag/v2.4.7"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/releases/tag/v3.1.8"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/releases/tag/v4.1.5"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-j6r3-76f7-8jcv",
+    "summary": "ip-address: isInSubnet() and isHostInSubnet() compare addresses of different families as if they shared an address space, allowing an allowlist check to admit an address outside its range",
+    "affected": [
+      {
+        "package": {
+          "name": "ip-address",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/ip-address"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "10.7.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "last_known_affected_version_range": "<= 10.7.0",
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-j6r3-76f7-8jcv/GHSA-j6r3-76f7-8jcv.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/beaugunderson/ip-address/security/advisories/GHSA-j6r3-76f7-8jcv"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-101912"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/beaugunderson/ip-address/commit/1343629d57fea413644a5c9d41ff1e59619f3f28"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/beaugunderson/ip-address"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/beaugunderson/ip-address/releases/tag/v10.7.1"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-pmjh-fq2x-6v4x",
+    "summary": "undici vulnerable to Denial of Service via orphaned RetryHandler response body",
+    "affected": [
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "7.11.0"
+              },
+              {
+                "fixed": "7.29.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-pmjh-fq2x-6v4x/GHSA-pmjh-fq2x-6v4x.json"
+        }
+      },
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "8.0.0"
+              },
+              {
+                "fixed": "8.10.2"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-pmjh-fq2x-6v4x/GHSA-pmjh-fq2x-6v4x.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/security/advisories/GHSA-pmjh-fq2x-6v4x"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-18149"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/3c6726599cea8646384dde846c97d630da472a74"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/e905b5b87e6953bcc542af90557b2fee5b7b5974"
+      },
+      {
+        "type": "WEB",
+        "url": "https://hackerone.com/reports/3892751"
+      },
+      {
+        "type": "WEB",
+        "url": "https://cna.openjsf.org/security-advisories.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/nodejs/undici"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v7.29.1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v8.10.2"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-q2hr-2g5m-vwhr",
+    "summary": "brace-expansion: Quadratic-time expansion of the `{a},b}` rewrite causes CPU denial of service",
+    "affected": [
+      {
+        "package": {
+          "name": "brace-expansion",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/brace-expansion"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "4.0.0"
+              },
+              {
+                "fixed": "5.0.12"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-q2hr-2g5m-vwhr/GHSA-q2hr-2g5m-vwhr.json"
+        }
+      },
+      {
+        "package": {
+          "name": "brace-expansion",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/brace-expansion"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "3.0.0"
+              },
+              {
+                "fixed": "3.0.9"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-q2hr-2g5m-vwhr/GHSA-q2hr-2g5m-vwhr.json"
+        }
+      },
+      {
+        "package": {
+          "name": "brace-expansion",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/brace-expansion"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "2.0.0"
+              },
+              {
+                "fixed": "2.1.7"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-q2hr-2g5m-vwhr/GHSA-q2hr-2g5m-vwhr.json"
+        }
+      },
+      {
+        "package": {
+          "name": "brace-expansion",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/brace-expansion"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "1.1.21"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-q2hr-2g5m-vwhr/GHSA-q2hr-2g5m-vwhr.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/juliangruber/brace-expansion/security/advisories/GHSA-q2hr-2g5m-vwhr"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-102277"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/juliangruber/brace-expansion/commit/33a5ef17b8d800bbfa8c52b14c39043b6aac1a96"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/juliangruber/brace-expansion/commit/bdff773f98e5988616b7039cc9b508df5d640b22"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/juliangruber/brace-expansion/commit/c55e67d8d8b1c56a2474afff15c2891166b2d364"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/juliangruber/brace-expansion/commit/ffdfa3e3806bed17c0874b8f1439b084de354a7e"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/juliangruber/brace-expansion"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-qhr7-859c-m2p7",
+    "summary": "brace-expansion: DoS via uncontrolled recursion on nested brace groups causing stack exhaustion",
+    "affected": [
+      {
+        "package": {
+          "name": "brace-expansion",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/brace-expansion"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "4.0.0"
+              },
+              {
+                "fixed": "5.0.11"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-qhr7-859c-m2p7/GHSA-qhr7-859c-m2p7.json"
+        }
+      },
+      {
+        "package": {
+          "name": "brace-expansion",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/brace-expansion"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "3.0.0"
+              },
+              {
+                "fixed": "3.0.8"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-qhr7-859c-m2p7/GHSA-qhr7-859c-m2p7.json"
+        }
+      },
+      {
+        "package": {
+          "name": "brace-expansion",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/brace-expansion"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "2.0.0"
+              },
+              {
+                "fixed": "2.1.6"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-qhr7-859c-m2p7/GHSA-qhr7-859c-m2p7.json"
+        }
+      },
+      {
+        "package": {
+          "name": "brace-expansion",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/brace-expansion"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "1.1.20"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-qhr7-859c-m2p7/GHSA-qhr7-859c-m2p7.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/juliangruber/brace-expansion/security/advisories/GHSA-qhr7-859c-m2p7"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-102278"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/juliangruber/brace-expansion/commit/1efee7c397c191da6287a78ec19512476a966a7b"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/juliangruber/brace-expansion/commit/935d78f32f335b2ff76578e5c5e877d31ae9888c"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/juliangruber/brace-expansion/commit/de84f144e9816f30e25fc8179e2e1249ab6df0db"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/juliangruber/brace-expansion"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-qw65-cvwx-89v3",
+    "summary": "fast-uri vulnerable to authority injection via an unvalidated port in serialize",
+    "affected": [
+      {
+        "package": {
+          "name": "fast-uri",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/fast-uri"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "2.4.6"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-qw65-cvwx-89v3/GHSA-qw65-cvwx-89v3.json"
+        }
+      },
+      {
+        "package": {
+          "name": "fast-uri",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/fast-uri"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "3.0.0"
+              },
+              {
+                "fixed": "3.1.7"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-qw65-cvwx-89v3/GHSA-qw65-cvwx-89v3.json"
+        }
+      },
+      {
+        "package": {
+          "name": "fast-uri",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/fast-uri"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "4.0.0"
+              },
+              {
+                "fixed": "4.1.4"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-qw65-cvwx-89v3/GHSA-qw65-cvwx-89v3.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/security/advisories/GHSA-qw65-cvwx-89v3"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-84292"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/commit/820e8478dd7da3d09f187bfaf35d50b71f67b8b4"
+      },
+      {
+        "type": "WEB",
+        "url": "https://cna.openjsf.org/security-advisories.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/fastify/fast-uri"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/releases/tag/v2.4.6"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/releases/tag/v3.1.7"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/fastify/fast-uri/releases/tag/v4.1.4"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-r53p-7pc4-xj5r",
+    "summary": "undici vulnerable to downstream response splitting via retry interceptor",
+    "affected": [
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "6.28.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-r53p-7pc4-xj5r/GHSA-r53p-7pc4-xj5r.json"
+        }
+      },
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "7.0.0"
+              },
+              {
+                "fixed": "7.29.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-r53p-7pc4-xj5r/GHSA-r53p-7pc4-xj5r.json"
+        }
+      },
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "8.0.0"
+              },
+              {
+                "fixed": "8.10.2"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-r53p-7pc4-xj5r/GHSA-r53p-7pc4-xj5r.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/security/advisories/GHSA-r53p-7pc4-xj5r"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-18540"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/0160a719063fb0a77f4fdf9500b9166b91e14329"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/cd8af90b38ae33c2838d54a2d629774122effe95"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/ce31bc824b578008faae5d3350da66c1b5f71548"
+      },
+      {
+        "type": "WEB",
+        "url": "https://hackerone.com/reports/3900104"
+      },
+      {
+        "type": "WEB",
+        "url": "https://hackerone.com/reports/3900615"
+      },
+      {
+        "type": "WEB",
+        "url": "https://cna.openjsf.org/security-advisories.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/nodejs/undici"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v6.28.1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v7.29.1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v8.10.2"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-rfgv-xxqx-mfg5",
+    "summary": "undici vulnerable to Denial of Service via unrequested WebSocket subprotocol",
+    "affected": [
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "6.7.0"
+              },
+              {
+                "fixed": "6.28.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-rfgv-xxqx-mfg5/GHSA-rfgv-xxqx-mfg5.json"
+        }
+      },
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "7.0.0"
+              },
+              {
+                "fixed": "7.29.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-rfgv-xxqx-mfg5/GHSA-rfgv-xxqx-mfg5.json"
+        }
+      },
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "8.0.0"
+              },
+              {
+                "fixed": "8.10.2"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-rfgv-xxqx-mfg5/GHSA-rfgv-xxqx-mfg5.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/security/advisories/GHSA-rfgv-xxqx-mfg5"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-19534"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/2af0faf88b906d3127a360c3ac75164c0f95e5a5"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/6615e0175e9b635bcd2e3e87a47daa82f6f5b728"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/66e12816064cf3068f63bd134748b7fc4e779bad"
+      },
+      {
+        "type": "WEB",
+        "url": "https://cna.openjsf.org/security-advisories.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/nodejs/undici"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v6.28.1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v7.29.1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v8.10.2"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-rpw4-54j3-4h4q",
+    "summary": "ip-address: Address6.isLinkLocal() recognizes fe80::/64 rather than fe80::/10, allowing SSRF and trust-boundary bypass to on-link hosts",
+    "affected": [
+      {
+        "package": {
+          "name": "ip-address",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/ip-address"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "10.5.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "last_known_affected_version_range": "<= 10.5.0",
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-rpw4-54j3-4h4q/GHSA-rpw4-54j3-4h4q.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/beaugunderson/ip-address/security/advisories/GHSA-rpw4-54j3-4h4q"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-101913"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/beaugunderson/ip-address/commit/d03e960c7cc3179ef25c8a44b4f94dd499625546"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/beaugunderson/ip-address"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/beaugunderson/ip-address/releases/tag/v10.5.1"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-rx4f-c7p8-82vq",
+    "summary": "undici vulnerable to Denial of Service via WebSocketStream unclean close",
+    "affected": [
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "7.0.0"
+              },
+              {
+                "fixed": "7.29.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-rx4f-c7p8-82vq/GHSA-rx4f-c7p8-82vq.json"
+        }
+      },
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "8.0.0"
+              },
+              {
+                "fixed": "8.10.2"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-rx4f-c7p8-82vq/GHSA-rx4f-c7p8-82vq.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/security/advisories/GHSA-rx4f-c7p8-82vq"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-85014"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/1858656ebb1e919311c1f31613dfd581b7214349"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/662d0ea671fe64139e79533c913fce412765e1d7"
+      },
+      {
+        "type": "WEB",
+        "url": "https://cna.openjsf.org/security-advisories.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/nodejs/undici"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v7.29.1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v8.10.2"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-w293-vg96-wgc3",
+    "summary": "undici vulnerable to TLS certificate validation bypass via dropped connect options in BalancedPool",
+    "affected": [
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "7.24.1"
+              },
+              {
+                "fixed": "7.29.1"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-w293-vg96-wgc3/GHSA-w293-vg96-wgc3.json"
+        }
+      },
+      {
+        "package": {
+          "name": "undici",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/undici"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "8.0.0"
+              },
+              {
+                "fixed": "8.10.2"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-w293-vg96-wgc3/GHSA-w293-vg96-wgc3.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/security/advisories/GHSA-w293-vg96-wgc3"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-84961"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/8f5868fbdbc8f1146dfc1bcd1f2d117790141390"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/commit/f690157d728508652fef14673630c71515123e96"
+      },
+      {
+        "type": "WEB",
+        "url": "https://cna.openjsf.org/security-advisories.html"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/nodejs/undici"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v7.29.1"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/nodejs/undici/releases/tag/v8.10.2"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-vcvr-r3jv-pc5j",
+    "summary": "Next.js: Remote Code Execution in next/og ImageResponse",
+    "affected": [
+      {
+        "package": {
+          "name": "next",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/next"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "16.2.0"
+              },
+              {
+                "fixed": "16.3.6"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-vcvr-r3jv-pc5j/GHSA-vcvr-r3jv-pc5j.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/vercel/next.js/security/advisories/GHSA-vcvr-r3jv-pc5j"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/vercel/satori/security/advisories/GHSA-wx4j-mvgx-mqwp"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/vercel/next.js/commit/868fad38690d72088868f299fa2bef339b26838e"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/vercel/next.js"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/vercel/next.js/releases/tag/v16.3.6"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-m9gg-hp2v-232j",
+    "summary": "@grpc/grpc-js: In certain configurations, getAuthContext can return unauthorized certificates as though they were authorized",
+    "affected": [
+      {
+        "package": {
+          "name": "@grpc/grpc-js",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/%40grpc/grpc-js"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "0"
+              },
+              {
+                "fixed": "1.13.6"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-m9gg-hp2v-232j/GHSA-m9gg-hp2v-232j.json"
+        }
+      },
+      {
+        "package": {
+          "name": "@grpc/grpc-js",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/%40grpc/grpc-js"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "1.14.0"
+              },
+              {
+                "fixed": "1.14.5"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-m9gg-hp2v-232j/GHSA-m9gg-hp2v-232j.json"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/grpc/grpc-node/security/advisories/GHSA-m9gg-hp2v-232j"
+      },
+      {
+        "type": "ADVISORY",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-101916"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/grpc/grpc-node/commit/2a84ec8b01b9db68ed9d2b117a53a81449edb8ee"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/grpc/grpc-node/commit/b4e0079c6d22a2adedfcac748e0bc083f783bc7c"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/grpc/grpc-node"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/grpc/grpc-node/releases/tag/@grpc/grpc-js%401.14.5"
+      }
+    ]
+  },
+  {
+    "id": "GHSA-p98j-92pf-mc4p",
+    "summary": "DOMPurify: IN_PLACE: node-removing afterSanitize hook leaves detached subtree event handlers armed, causing DOM XSS",
+    "affected": [
+      {
+        "package": {
+          "name": "dompurify",
+          "ecosystem": "npm",
+          "purl": "pkg:npm/dompurify"
+        },
+        "ranges": [
+          {
+            "type": "SEMVER",
+            "events": [
+              {
+                "introduced": "3.4.13"
+              },
+              {
+                "fixed": "3.4.16"
+              }
+            ]
+          }
+        ],
+        "database_specific": {
+          "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-p98j-92pf-mc4p/GHSA-p98j-92pf-mc4p.json",
+          "last_known_affected_version_range": "<= 3.4.15"
+        }
+      }
+    ],
+    "references": [
+      {
+        "type": "WEB",
+        "url": "https://github.com/cure53/DOMPurify/security/advisories/GHSA-p98j-92pf-mc4p"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/cure53/DOMPurify/pull/1636"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/cure53/DOMPurify/commit/b9b9d80f7e401771c2ccaef5f45def7eec8f27d7"
+      },
+      {
+        "type": "PACKAGE",
+        "url": "https://github.com/cure53/DOMPurify"
+      },
+      {
+        "type": "WEB",
+        "url": "https://github.com/cure53/DOMPurify/releases/tag/3.4.16"
+      }
+    ]
+  }
+]
