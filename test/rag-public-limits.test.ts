@@ -10,7 +10,7 @@ import { runProCurriculumAnalysis } from "@/lib/rag/runProCurriculumAnalysis";
 
 const { candidates } = vi.hoisted(() => ({ candidates: Array.from({ length: 10 }, (_, i) => ({
   code: `SYN-${i}`, titel: `De leerlingen kunnen optellen met blokken ${i}.`, netwerk: "OPSTAP" as const, verrijking: "corpus" as const, discipline: "Wiskunde", subdomein: "Getallen", toelichting: "", leerjaarRoute: "", bronUrl: "", score: 100 - i,
-  gelinktMinimumdoel: { code: `MD-${i}`, tekst: `De leerlingen kunnen optellen ${i}.` },
+  gelinktMinimumdoel: { code: `MD-${i}`, tekst: `De leerlingen kunnen optellen ${i}.`, type: "synthetisch" },
 })) }));
 vi.mock("@/lib/auth/guard", () => ({ sessionFromRequest: () => ({ id: "limit-user", tier: "admin" }), unauthorizedResponse: () => new Response(null, { status: 401 }) }));
 vi.mock("@/lib/auth/moduleRouteGuard", () => ({ requireModuleAccess: () => null }));
