@@ -3,7 +3,9 @@ import { getDatabase } from "@/lib/db/sqlite";
 
 function limit(name: string, fallback: number) {
   const value = Number(process.env[name] ?? fallback);
-  return Number.isSafeInteger(value) && value >= 0 ? value : fallback;
+  // Only an absent setting uses the default. A malformed configured ceiling
+  // must not silently enable potentially billable organization AI.
+  return Number.isSafeInteger(value) && value >= 0 ? value : 0;
 }
 export function reserveOrgAiBudget(orgId: string, now = Date.now()) {
   const day = new Date(now).toISOString().slice(0, 10);

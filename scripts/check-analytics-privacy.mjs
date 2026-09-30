@@ -8,21 +8,24 @@ try {
  for (const configured of [false, true]) {
   const bundle = await build({
    stdin: { contents: `import React from 'react'; import { createRoot } from 'react-dom/client';
-    import { PostHogProvider } from './components/providers/posthog-provider';
+    import { PostHogProvider, resetPostHogIdentity } from './components/providers/posthog-provider';
     import * as analytics from './lib/analytics/consent';
     window.analyticsProbe=analytics;
+    window.resetAnalyticsIdentity=resetPostHogIdentity;
     createRoot(document.getElementById('root')).render(React.createElement(PostHogProvider, null, React.createElement('button', {id:'lesson',onClick:()=>{document.getElementById('lesson').textContent='Lesson works';analytics.captureAnalytics('feature_completed','spellcheck');}}, 'Synthetic lesson')));`, resolveDir: process.cwd() },
    bundle: true,write:false,platform:"browser",format:"iife",tsconfig:"tsconfig.json",
    define: { "process.env.NODE_ENV":'"production"', "process.env.NEXT_PUBLIC_POSTHOG_KEY":'"phc_synthetic"', "process.env.NEXT_PUBLIC_POSTHOG_HOST":'"https://eu.i.posthog.com"', "process.env.NEXT_PUBLIC_ANALYTICS_ENABLED":'"true"', "process.env.NEXT_PUBLIC_POSTHOG_CONFIGURATION_CONFIRMED":JSON.stringify(String(configured)), "process.env.NEXT_PUBLIC_POSTHOG_REGION":'"EU"', "process.env.NEXT_PUBLIC_POSTHOG_RETENTION_MONTHS":'"12"', "process.env.NEXT_PUBLIC_POSTHOG_RETENTION_ENFORCED":'"true"' },
    plugins:[{name:"synthetic-route",setup(b){b.onResolve({filter:/^next\/navigation$/},()=>({path:"route",namespace:"probe"}));b.onLoad({filter:/.*/,namespace:"probe"},()=>({contents:'export function usePathname(){return "/settings";}'}));}}],
   });
   const context=await browser.newContext({serviceWorkers:"block"}); const requests=[],errors=[];
+  let stallTransport=false; const held=[];
   await context.route("**/*",async route=>{
    const r=route.request();
    if(new URL(r.url()).hostname==="127.0.0.1") return route.fulfill({contentType:"text/html",body:'<!doctype html><title>PRIVATE_TITLE</title><div id="root"></div><input value="PRIVATE_PUPIL">'});
    requests.push({url:r.url(),body:r.postData()??"",headers:r.headers()});
+   if(stallTransport) await new Promise(resolve=>held.push(resolve));
    // A failing service must never create a retry/buffer that survives withdrawal.
-   await route.fulfill({status:503,contentType:"application/json",headers:{"access-control-allow-origin":"*"},body:'{}'});
+   await route.fulfill({status:503,contentType:"application/json",headers:{"access-control-allow-origin":"*"},body:'{}'}).catch(()=>{});
   });
   const page=await context.newPage();page.on("pageerror",e=>errors.push(e.message));
   const mount=async()=>{await page.goto("http://127.0.0.1:18998/settings?email=PRIVATE_EMAIL#PRIVATE_KEY");await page.addScriptTag({content:bundle.outputFiles[0].text});await page.getByRole("button",{name:"Privacy & cookies",exact:true}).waitFor();};
@@ -46,6 +49,20 @@ try {
    assert.ok(!JSON.stringify(requests).includes("PRIVATE_"),"Private URL/DOM/identity data crossed transport");
    for(const request of requests){assert.equal(new URL(request.url).hostname,"eu.i.posthog.com");assert.ok(!request.headers.cookie);assert.ok(!request.headers.referer);if(request.body){const e=JSON.parse(request.body);assert.ok(["$pageview","feature_completed"].includes(e.event));assert.equal(e.properties.$process_person_profile,false);assert.equal(e.properties.$geoip_disable,true);}}
    const storage=await page.evaluate(()=>JSON.stringify({...localStorage,...sessionStorage}));assert.ok(!storage.includes("distinct_id"));
+   // Hold actual browser fetches open, then use the same identity reset called
+   // by logout/account switching. No real analytics endpoint is contacted.
+   await page.evaluate(()=>{ const original=window.fetch; window.pendingAnalyticsSignals=[];
+    window.fetch=(input,init)=>{window.pendingAnalyticsSignals.push(init.signal);return original(input,init);}; });
+   stallTransport=true;
+   await page.evaluate(()=>{analyticsProbe.setAnalyticsChoice("accepted");analyticsProbe.captureAnalytics("feature_started","spellcheck");});
+   await page.waitForFunction(()=>window.pendingAnalyticsSignals.length>0);
+   await page.evaluate(()=>resetAnalyticsIdentity());
+   assert.equal(await page.evaluate(()=>window.pendingAnalyticsSignals.every(signal=>signal.aborted)),true,"Account reset aborts in-flight analytics");
+   assert.equal(await page.evaluate(()=>analyticsProbe.readAnalyticsChoice()),"unknown");
+   stallTransport=false;for(const release of held.splice(0))release();
+   const resetCount=requests.length;await page.locator("#lesson").click();await page.waitForTimeout(300);
+   assert.equal(requests.length,resetCount,"No new analytics after account reset");
+   assert.equal(await page.locator("#lesson").textContent(),"Lesson works");
   }
   assert.deepEqual(errors,[]);
   const blockedPage=await context.newPage();

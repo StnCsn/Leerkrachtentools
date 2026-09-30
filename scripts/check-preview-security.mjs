@@ -24,7 +24,7 @@ try {
   await page.route("**/*", (route) => { requests.push(route.request().url()); return route.abort(); });
   await page.setContent(`<html><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-audit'; style-src 'unsafe-inline'; frame-src 'self' blob:"></head><body><div id="legacy"></div></body></html>`);
   const helper = buildSync({ entryPoints: ["lib/documents/previewFrame.ts"], bundle: true, format: "iife", globalName: "PreviewSecurity", write: false }).outputFiles[0].text;
-  for (const code of [readFileSync("node_modules/jszip/dist/jszip.min.js", "utf8"), readFileSync("node_modules/docx-preview/dist/docx-preview.js", "utf8"), helper]) {
+  for (const code of [readFileSync("node_modules/jszip/dist/jszip.min.js", "utf8"), readFileSync("node_modules/docx-preview/dist/docx-preview.js", "utf8"), helper, readFileSync("node_modules/dompurify/dist/purify.min.js", "utf8")]) {
     await page.evaluate((source) => { const script = document.createElement("script"); script.nonce = "audit"; script.textContent = source; document.head.append(script); }, code);
   }
   // Control: prove the fixture affects the surrounding page with the old mount.
@@ -55,5 +55,20 @@ try {
   assert.match(state.text, /Audit fixture/);
   assert.equal(state.scriptRan, false);
   assert.deepEqual(requests, []);
+  // Exercise the installed transitive sanitizer's detached-subtree advisory
+  // without network resources or executing attacker-controlled code.
+  const purified = await page.evaluate(() => {
+    return ["afterSanitizeElements", "afterSanitizeAttributes"].map(hook => {
+      const root = document.createElement("div");
+      root.innerHTML = '<section id="purify-wrap"><img onerror="window.purifyMarker=true"></section>';
+      document.body.append(root); const image = root.querySelector("img");
+      window.DOMPurify.addHook(hook, node => { if(node.id === "purify-wrap") node.remove(); });
+      window.DOMPurify.sanitize(root, { IN_PLACE: true });
+      window.DOMPurify.removeAllHooks(); const stripped = image.getAttribute("onerror") === null;
+      root.remove(); return stripped;
+    });
+  });
+  assert.deepEqual(purified, [true, true], "Detached subtrees must have their event handlers neutralized");
+  console.log(`DOMPurify detached-subtree regression passed (${engine}).`);
   console.log(`Preview security passed (${engine}): malicious DOCX CSS isolated; scripts, resource loads and link navigation blocked.`);
 } finally { await browser.close(); }
