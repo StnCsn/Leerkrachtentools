@@ -1,0 +1,45 @@
+(node:17270) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+leerkrachtentools@5.21.0-rc.1 (repository)
+├─┬ @ai-sdk/cerebras@3.0.53
+│ └─┬ @ai-sdk/provider-utils@5.0.45
+│   └── undici@7.29.1 deduped
+├─┬ @google-cloud/discoveryengine@2.9.0
+│ └─┬ google-gax@5.0.8
+│   ├── @grpc/grpc-js@1.14.5 overridden
+│   └─┬ rimraf@5.0.10
+│     └─┬ glob@10.5.0
+│       └─┬ minimatch@9.0.9
+│         └── brace-expansion@2.1.7 overridden
+├─┬ eslint-config-next@16.3.6
+│ └─┬ typescript-eslint@8.68.0
+│   └─┬ @typescript-eslint/typescript-estree@8.68.0
+│     └─┬ minimatch@10.2.6
+│       └── brace-expansion@5.0.12 overridden
+├─┬ eslint@9.39.5
+│ └─┬ minimatch@3.1.5
+│   └── brace-expansion@1.1.21 overridden
+├── next@16.3.6
+├─┬ posthog-js@1.434.2
+│ └── dompurify@3.4.16 overridden
+└─┬ shadcn@4.21.0
+  ├─┬ @dotenvx/dotenvx@1.75.1
+  │ ├─┬ conf@10.2.0
+  │ │ └─┬ ajv@8.20.0
+  │ │   └── fast-uri@3.1.8 deduped
+  │ └── undici@7.29.1 deduped
+  ├─┬ @modelcontextprotocol/sdk@1.30.0
+  │ ├─┬ ajv-formats@3.0.1
+  │ │ └─┬ ajv@8.20.0
+  │ │   └── fast-uri@3.1.8 deduped
+  │ ├─┬ ajv@8.20.0
+  │ │ └── fast-uri@3.1.8 overridden
+  │ └─┬ express-rate-limit@8.6.2
+  │   └── ip-address@10.7.1 deduped
+  ├─┬ socks@2.8.9
+  │ └── ip-address@10.7.1 overridden
+  ├─┬ ts-morph@26.0.0
+  │ └─┬ @ts-morph/common@0.27.0
+  │   └─┬ minimatch@10.2.6
+  │     └── brace-expansion@5.0.12 overridden
+  └── undici@7.29.1 overridden

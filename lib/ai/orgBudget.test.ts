@@ -3,6 +3,13 @@ import { afterEach, expect, it, vi } from "vitest";
 import { createOrganization } from "@/lib/api-keys";
 import { reserveOrgAiBudget } from "./orgBudget";
 afterEach(() => vi.unstubAllEnvs());
+it.each(["ORG_AI_DAILY_LIMIT", "ORG_AI_GLOBAL_DAILY_LIMIT"])("disables organization AI for invalid %s instead of reopening the default budget", (name) => {
+  const org = createOrganization({ name: "invalid budget", email: `${randomUUID()}@example.test`, tier: "enterprise", quota: 1000 }).id;
+  for (const value of ["-1", "NaN", "1.5", "Infinity", "9007199254740992"]) {
+    vi.stubEnv(name, value);
+    expect(reserveOrgAiBudget(org)).toBe(false);
+  }
+});
 it("shares an organization budget, keeps global limits and opens a new UTC day", () => {
   vi.stubEnv("ORG_AI_DAILY_LIMIT", "2");
   vi.stubEnv("ORG_AI_GLOBAL_DAILY_LIMIT", "3");

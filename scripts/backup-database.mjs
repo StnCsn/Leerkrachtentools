@@ -1,5 +1,5 @@
 import Database from "better-sqlite3";
-import { chmodSync, existsSync, renameSync, unlinkSync } from "node:fs";
+import { chmodSync, existsSync, linkSync, unlinkSync } from "node:fs";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 
@@ -20,7 +20,11 @@ try {
     const result = restored.pragma("integrity_check", { simple: true });
     if (result !== "ok") throw new Error("Backup-integriteitscontrole mislukt.");
   } finally { restored.close(); }
-  renameSync(partial, destination);
+  // Publish atomically without replacement. Another backup may have created
+  // the destination while SQLite was copying; rename would overwrite it.
+  // The partial lives in the same directory/filesystem as the destination.
+  linkSync(partial, destination);
+  unlinkSync(partial);
   console.log("SQLite-backup gemaakt en opnieuw geopend: integrity_check=ok. Kopieer versleuteld naar opslag buiten de VM.");
 } finally {
   db.close();

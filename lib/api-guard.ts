@@ -1,5 +1,6 @@
 import { logSafeError } from "@/lib/security/safeLog";
 import { limitCachedMatchResponse } from "@/lib/rag/outputLimit";
+import { getDatabase } from "@/lib/db/sqlite";
 import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { z } from "zod";
@@ -323,16 +324,22 @@ export function withApiAuth(
       }
       idempotencyKey = parsedKey.key;
       const digest = requestFingerprint({ method, endpoint, body });
-      const quota = reserveOrgApiCall({
-        orgId: auth.orgId,
-        keyId: auth.keyId,
-        monthlyLimit: auth.monthlyQuota,
-        method,
-        endpoint,
-        requestDigest: digest,
-        idempotencyKey,
-        now: Date.now(),
-      });
+      // Body reading yielded control: the key may have been revoked, rotated,
+      // expired or had its scopes changed. Revalidate and reserve/replay under
+      // one write transaction, also serializing against the operator CLI.
+      const quota = getDatabase().transaction(() => {
+        auth = validateApiKey(parseBearerToken(request), requiredScope);
+        return reserveOrgApiCall({
+          orgId: auth.orgId,
+          keyId: auth.keyId,
+          monthlyLimit: auth.monthlyQuota,
+          method,
+          endpoint,
+          requestDigest: digest,
+          idempotencyKey,
+          now: Date.now(),
+        });
+      }).immediate();
 
       if (!quota.ok) {
         statusCode = denialStatus(quota.reason);

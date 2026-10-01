@@ -1,5 +1,10 @@
 /** Public result cap, independent of the larger internal retrieval candidate pool. */
 export const MAX_PUBLIC_GOAL_MATCHES = 5;
+/** Reject malformed public limits before retrieval or potentially billable work. */
+export function parsePublicGoalLimit(value: unknown): number | null {
+  if (value === undefined) return MAX_PUBLIC_GOAL_MATCHES;
+  return typeof value === "number" && Number.isInteger(value) && value >= 1 && value <= MAX_PUBLIC_GOAL_MATCHES ? value : null;
+}
 export const UNKNOWN_SOURCE_METADATA = { version: null, status: "ONBEKEND" as const, notice: "De geladen bronversie en gebruiksrechten zijn niet geverifieerd. Er worden geen bronlinks of versies afgeleid. Maximaal vijf resultaten vormt geen auteursrechtelijke vrijstelling." };
 
 export function limitGoalMatches<T>(payload: T, limit = MAX_PUBLIC_GOAL_MATCHES): T {

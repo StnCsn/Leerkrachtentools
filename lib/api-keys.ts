@@ -241,7 +241,7 @@ export function generateApiKey(
     key.createdAt,
   );
   db.prepare("INSERT INTO api_key_events (key_id, org_id, action, created_at) VALUES (?, ?, 'issued', ?)").run(key.id, key.orgId, key.createdAt);
-  })();
+  }).immediate();
 
   return {
     ...key,
@@ -385,7 +385,7 @@ export function revokeApiKey(keyId: string) {
     throw new Error("API-sleutel niet gevonden.");
   }
   db.prepare("INSERT INTO api_key_events (key_id, org_id, action, created_at) VALUES (?, ?, 'revoked', ?)").run(keyId.trim(), row!.org_id, Date.now());
-  })();
+  }).immediate();
 }
 
 export function rotateApiKey(keyId: string, lifetimeDays = API_KEY_DEFAULT_LIFETIME_DAYS) {
@@ -396,7 +396,7 @@ export function rotateApiKey(keyId: string, lifetimeDays = API_KEY_DEFAULT_LIFET
     const next = generateApiKey(previous.org_id, previous.name, parseApiKeyScopes(previous.scopes), lifetimeDays);
     revokeApiKey(previous.id);
     return next;
-  })();
+  }).immediate();
 }
 
 export function inspectOrganization(orgId: string, now = Date.now()) {

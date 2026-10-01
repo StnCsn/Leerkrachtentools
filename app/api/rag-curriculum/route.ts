@@ -1,5 +1,6 @@
 import { logSafeError } from "@/lib/security/safeLog";
 import { NextResponse } from "next/server";
+import { parsePublicGoalLimit, MAX_PUBLIC_GOAL_MATCHES } from "@/lib/rag/outputLimit";
 import {
   sessionFromRequest,
   unauthorizedResponse,
@@ -109,6 +110,7 @@ function curriculumSearchResponse({
   searchMode = "snel",
   proFallback = false,
   provider = "jsonl-corpus+discovery-engine",
+  outputLimit = MAX_PUBLIC_GOAL_MATCHES,
 }: {
   merged: Array<CurriculumSearchResult & { score?: number }>;
   corpusNotice: string;
@@ -119,8 +121,9 @@ function curriculumSearchResponse({
   searchMode?: "snel" | "pro";
   proFallback?: boolean;
   provider?: string;
+  outputLimit?: number;
 }) {
-  merged = merged.slice(0, 5);
+  merged = merged.slice(0, outputLimit);
   const alternatives = merged.slice(1);
   return NextResponse.json(
     {
@@ -329,6 +332,7 @@ async function handleCurriculumSearch(request: Request) {
     if (moduleDenied) return moduleDenied;
 
     let body: {
+      limit?: unknown;
       goal?: string;
       query?: string;
       network?: CurriculumNetworkFilter | string;
@@ -360,6 +364,10 @@ async function handleCurriculumSearch(request: Request) {
       throw error;
     }
 
+    const outputLimit = parsePublicGoalLimit(body?.limit);
+    if (outputLimit === null) {
+      return NextResponse.json({ error: "limit moet een geheel getal van 1 tot en met 5 zijn." }, { status: 400 });
+    }
     const query = String(body.goal ?? body.query ?? "").trim();
     if (!query) {
       return NextResponse.json(
@@ -464,6 +472,7 @@ async function handleCurriculumSearch(request: Request) {
           ? discoveryFallbackNotice(false, true, true) ?? INTERRUPTED_NOTICE
           : INTERRUPTED_NOTICE;
       return curriculumSearchResponse({
+        outputLimit,
         merged: local,
         corpusNotice: notice,
         retrievalMode: local.length > 0 ? "curriculum-hybrid" : "semantic-fallback",
@@ -518,6 +527,7 @@ async function handleCurriculumSearch(request: Request) {
           signal: request.signal,
         });
         return curriculumSearchResponse({
+          outputLimit,
           merged: pro.merged,
           corpusNotice: pro.corpusNotice || searchResult.corpusNotice,
           retrievalMode: searchResult.retrievalMode,
@@ -530,6 +540,7 @@ async function handleCurriculumSearch(request: Request) {
       } catch (error) {
         logSafeError("[rag-curriculum:pro]", error);
         return curriculumSearchResponse({
+          outputLimit,
           merged: searchResult.merged.slice(0, CURRICULUM_TOP_N),
           corpusNotice:
             "De didactische analyse is niet gelukt. Dit zijn de snelle zoekkaarten.",
@@ -543,6 +554,7 @@ async function handleCurriculumSearch(request: Request) {
     }
 
     return curriculumSearchResponse({
+      outputLimit,
       ...searchResult,
       networkFallbackNotice,
       queryRewrite: rewrite,

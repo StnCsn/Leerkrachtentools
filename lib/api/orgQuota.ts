@@ -387,7 +387,7 @@ export function reserveOrgApiCall({
       leaseId,
       ownerToken,
     };
-  })();
+  }).immediate();
 }
 
 export function heartbeatOrgApiCall({
@@ -501,7 +501,7 @@ export function completeOrgApiCall({
       ).run(storedStatus, stored, bytes, orgId, keyId, idempotencyKey);
     }
     return { statusCode: storedStatus, body: stored };
-  })();
+  }).immediate();
 }
 
 export function noteOrgDenial(orgId: string, now = Date.now()) {

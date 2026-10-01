@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { parsePublicGoalLimit } from "@/lib/rag/outputLimit";
 import {
   sessionFromRequest,
   unauthorizedResponse,
@@ -89,6 +90,7 @@ export async function POST(request: Request) {
 
   try {
     const body = (await readJsonBody(request, 64_000)) as {
+      limit?: unknown;
       goal?: string;
       educationLevel?: EducationLevelFilter;
       grade?: TargetGroupSearchContext["grade"];
@@ -103,6 +105,10 @@ export async function POST(request: Request) {
       learningArea?: string;
       phases?: unknown;
     };
+    const outputLimit = parsePublicGoalLimit(body?.limit);
+    if (outputLimit === null) {
+      return NextResponse.json({ error: "limit moet een geheel getal van 1 tot en met 5 zijn." }, { status: 400 });
+    }
     const query = body.goal?.trim();
 
     if (!query) {
@@ -134,7 +140,7 @@ export async function POST(request: Request) {
 
     const searchMode = parseCurriculumSearchMode(body.searchMode);
     const topN =
-      searchMode === "pro" ? CURRICULUM_PRO_RETRIEVAL_N : MINIMUM_GOALS_TOP_N;
+      searchMode === "pro" ? CURRICULUM_PRO_RETRIEVAL_N : Math.max(outputLimit, MINIMUM_GOALS_TOP_N);
     const lessonContext = parseProLessonContext({
       topic: body.topic,
       learningArea: body.learningArea,
@@ -213,7 +219,7 @@ export async function POST(request: Request) {
     let ranked = merged;
     let corpusNotice =
       ranked.length > 0
-        ? `Top ${Math.min(ranked.length, MINIMUM_GOALS_TOP_N)} minimumdoelen - hoogste match bovenaan.`
+        ? `Top ${Math.min(ranked.length, outputLimit)} minimumdoelen - hoogste match bovenaan.`
         : "Geen passend minimumdoel gevonden. Probeer je lesdoel anders te formuleren.";
     let proFallback = false;
     let provider = "jsonl-corpus+discovery-engine";
@@ -227,21 +233,21 @@ export async function POST(request: Request) {
           budget: { kind: "user", userId: session.id, tier: session.tier },
           signal: request.signal,
           kind: "minimumdoel",
-          fallbackLimit: MINIMUM_GOALS_TOP_N,
+          fallbackLimit: outputLimit,
         });
         ranked = pro.merged;
         corpusNotice = pro.corpusNotice || corpusNotice;
         proFallback = pro.proFallback;
         provider = pro.provider;
       } catch {
-        ranked = ranked.slice(0, MINIMUM_GOALS_TOP_N);
+        ranked = ranked.slice(0, outputLimit);
         corpusNotice =
           "De didactische analyse is niet gelukt. Dit zijn de snelle zoekkaarten.";
         proFallback = true;
       }
     }
 
-    ranked = ranked.slice(0, 5).map(sanitizeMinimumGoalForResponse);
+    ranked = ranked.slice(0, outputLimit).map(sanitizeMinimumGoalForResponse);
     const goal = ranked[0] ?? null;
     const alternatives = ranked.slice(1);
 
