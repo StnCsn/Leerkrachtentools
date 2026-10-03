@@ -33,8 +33,8 @@ voorstel; geen nieuwe runtimebypass of tijd-/proofmapoverride.
 | Volledige `npm ci` (scripts actief; bestaande native headers) | GESLAAGD; 862 pakketten, backport toegepast |
 | `npm run lint` | GESLAAGD |
 | `npx next typegen` en `npm run typecheck` | Beide GESLAAGD |
-| Volledige `env NODE_ENV=test npm test -- --maxWorkers=4` | GESLAAGD; **155 bestanden, 764 tests geslaagd, 1 bestaande corpus-skip**, totaal 765 |
-| Vijf gerichte audit/checker/backport/installerbestanden, npm 11.9.0 én npm 10.9.9 | Beide GESLAAGD; **89 tests**, inclusief 17 echte audit-CLI-subprocessproeven; 0 skips |
+| Volledige `env NODE_ENV=test npm test -- --maxWorkers=4` | GESLAAGD; **155 bestanden, 765 tests geslaagd, 1 bestaande corpus-skip**, totaal 766 |
+| Vijf gerichte audit/checker/backport/installerbestanden, npm 11.9.0 én npm 10.9.9 | Beide GESLAAGD; **90 tests**, inclusief 18 echte audit-CLI-subprocessproeven; 0 skips |
 | `npm run build` | GESLAAGD; verse productie-/standalone-output |
 | `node scripts/check-standalone.mjs --browser` | GESLAAGD; 25 auth/CSRF-endpoints, accountscheiding, PDF/DOCX-export/herimport, storage/logout en koude restore |
 | Echte `npm run security:audit -- --all`, live OSV/registry + verse tijdelijke `npm ci --omit=dev` | **GESLAAGD met tijdelijke mitigatie**, 960 combinaties, 1 raw braces-finding, 1 tijdelijk gemitigeerd, 0 overige blokkerend; exit 0 |
@@ -42,10 +42,11 @@ voorstel; geen nieuwe runtimebypass of tijd-/proofmapoverride.
 | Aanvullende native `npm audit --json` | **MISLUKT, exit 1**; 8 high pakket-/ketenmeldingen maar exact 1 unieke bronadvisory, dezelfde braces-GHSA; registry kent onze backport niet |
 | Echte Linux/systemd/cgroupacceptatie lokaal | **GEBLOKKEERD**; geen hostroot/systemd/schrijfbare cgroups, rootguard behouden |
 
-De 17 CLI-proeven starten daadwerkelijk `npm run security:audit -- --all`
+De 18 CLI-proeven starten daadwerkelijk `npm run security:audit -- --all`
 in begrensde subprocessen (15 seconden, 256 MiB JS-heap). De positieve proef
 controleert waarschuwing, vervaldatum, raw-/mitigatie-/blockingtelling en exit 0.
-Negatieve proeven controleren exit 1 voor ontbrekende/gewijzigde geïnstalleerde
+Negatieve proeven controleren exit 1 voor de complete officiële release zonder
+toegepaste backport, ontbrekende/gewijzigde geïnstalleerde
 patch, gewijzigd manifest, andere versie, gewijzigde actuele keten, braces onder
 alias in productie/standalone, extra advisory, exacte deadline én latere datum,
 ongeldige upstreammetadata/ontbrekend introduced-event, nieuwe officiële release,
@@ -72,6 +73,41 @@ buiten Git. Alle gegevens/mocks synthetisch; geen echte AI-, mail- of
 analyticsaanroepen. Definitieve geteste PR-head en de volledige GitHub-run
 (inclusief Linux-isolatie en acht browsercommando's) worden na de run hieronder
 en in PR #34 vastgelegd. Historische tellingen verderop gelden niet voor deze run.
+
+### Volledige GitHub-activatierun en definitieve hertest
+
+[CI #247](https://github.com/tibodepauw/Leerkrachtentools/actions/runs/37146353150)
+is werkelijk **GESLAAGD** op activatiecommit
+`d1671cffa248639108cc9bd9cd0b4bd2026f88cd` (quality-job `111270999219`).
+Alle stappen zijn uitgevoerd; geen inhoudelijke of post-action-stap overgeslagen:
+
+| GitHub-controle | Werkelijk resultaat op de activatiecommit |
+| --- | --- |
+| Checkout, Node 22, volledige npm ci met postinstall | Alle GESLAAGD |
+| Next typegen, lint, typecheck | Alle GESLAAGD |
+| Volledige npm test | GESLAAGD; 155 bestanden, 764 geslaagd, 1 bestaande corpus-skip, totaal 765 |
+| Productiebuild en standalone smoke | Beide GESLAAGD |
+| Linux-isolatie/kernelgrenzen op geschikte runner | GESLAAGD; hostbestand/schrijf/netwerk-denial, CPU-deadline, native OOM en echte standalone parsing |
+| Browserinstallatie Chromium/Firefox/WebKit | GESLAAGD |
+| Client-session; analytics en preview ieder in drie engines; standalone --browser | Alle acht commando's GESLAAGD, logs gecontroleerd |
+| Laatste volledige dependency-audit inclusief dev/build | GESLAAGD **met tijdelijke mitigatie**; 960 combinaties, 1 raw/1 tijdelijk gemitigeerd/0 overige blokkerend |
+| Post Setup Node.js, Post Checkout, Complete job | Alle GESLAAGD |
+
+De auditlog bevat daadwerkelijk de GHSA, lokale-backportstatus en deadline;
+de oorspronkelijke finding is zichtbaar en wordt niet als verdwenen voorgesteld.
+De registry/native npm-audit blijft rood zoals hierboven afzonderlijk vermeld.
+
+De afrondingscommit voegt de expliciete CLI-proef van de **complete officiële
+3.0.3-release zonder toegepaste postinstall-patch** toe (exit 1) en deze gemeten
+CI-uitkomst. De definitieve lokale telling is daarom 18 CLI-proeven, 90 gerichte
+tests en 765 geslaagde projecttests + 1 corpus-skip. Voor die definitieve head
+wordt **opnieuw volledige GitHub CI** uitgevoerd, inclusief alle browser- en
+Linux-controles en de echte audit. De exacte definitieve commit, runlink en alle
+werkelijke resultaten staan na afloop in de
+[PR-beschrijving #34](https://github.com/tibodepauw/Leerkrachtentools/pull/34)
+en het lokale definitieve rapport
+`/workspace/.onboarding/braces-pr34-followup/activation-final-report.md`.
+Een eerdere groene run vervangt deze head-verificatie niet.
 
 ## Actuele officiële bronnen
 

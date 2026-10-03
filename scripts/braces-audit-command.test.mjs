@@ -62,6 +62,15 @@ describe("real active npm run security:audit subprocess", () => {
   });
 
   it.each([
+    ["complete unpatched official release", o => {
+      const patch = JSON.parse(readFileSync("patches/braces-3.0.3-depth.json", "utf8"));
+      for (const file of patch.files) {
+        const filename = path.join(o.root, "node_modules/braces", file.path);
+        let content = readFileSync(filename, "utf8");
+        for (const edit of [...file.edits].reverse()) content = content.replace(edit.after, () => edit.before);
+        writeFileSync(filename, content);
+      }
+    }],
     ["missing patched file", o => rmSync(path.join(o.root, "node_modules/braces/lib/parse.js"))],
     ["changed installed patch", o => writeFileSync(path.join(o.root, "node_modules/braces/lib/parse.js"), "// unpatched or changed")],
     ["changed manifest", o => writeFileSync(path.join(o.root, "patches/braces-3.0.3-depth.json"), "{}")],
@@ -89,6 +98,7 @@ describe("real active npm run security:audit subprocess", () => {
     expect(result.status).toBe(1);
     if (!options.config.invalidAudit) expect(result.output).toContain("GHSA-vfj7-8cjw-p6xm");
     if (!options.config.extra) expect(result.output).not.toContain("TIJDELIJK GEMITIGEERD:");
+    if (options.config.extra) expect(result.output).toContain("2 findings; 1 tijdelijk gemitigeerd; 1 overige blokkerende findings");
   });
 
   it("does not introduce an exception path into the production-only audit", () => {
