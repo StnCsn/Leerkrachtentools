@@ -1,0 +1,100 @@
+{
+  "status": "approved-active",
+  "activationApprovedProposalCommit": "e15d93d14f3320c3f317b6638a6b29e206e1771a",
+  "package": "braces",
+  "version": "3.0.3",
+  "advisory": "GHSA-vfj7-8cjw-p6xm",
+  "expiresAt": "2026-10-17T00:00:00.000Z",
+  "reviewedCommit": "185b549b111ae512cdfa65d495cfb03c1785e67d",
+  "patchManifestSha256": "dabe6ac03c7b468c03175090d35fd0a051156ba7f3134051bf4a4b37ea1e4e86",
+  "installedFilesSha256": {
+    "LICENSE": "35bdd8a44339719441900fb50fbefc5e2dca1ca662cbaed7a687de842c8b70f2",
+    "README.md": "947b0fc3cc12eaaa070207126213fbdf9ab2bf8cd13dcc6e4007b36b79309866",
+    "index.js": "332ea07c7b006361aad12aa994ca75dc1db8e8382b884909e2f38f10b85c88a4",
+    "lib/compile.js": "b651f7715e6db8942ce61d3394357b4d81c8ece88240aa31a458ea1165edd195",
+    "lib/constants.js": "f9fb688959232eee3e6ad7906a5b0e3234815db49ee857ef86983d65b917dc7c",
+    "lib/expand.js": "7ea3e14c2b2b256ef244fd3d83b8fcaa20aa2232b4e6d768c3bb6ab567f66cf5",
+    "lib/parse.js": "72aabaadaa555cdfbd07fbd7c7f743373e4dc8eec04a97550cc57bbeec30eb6c",
+    "lib/stringify.js": "49dc2d8bafa74f34715a18a845bcb82ce66caaf3bab4cf117998e06b1f9a50a9",
+    "lib/utils.js": "b5a7596aa67730412b3c029ef09e84e6b67b8e445cffd35d1d295549c89066c7",
+    "package.json": "56f08b888a4f30dc7cf8a7dbb36ffe92b737912ba36abe9d069d32167c957ac7"
+  },
+  "chainsExplainSha256": "a35beac94bd417a9d8c5c7c650dcf7519a1687c9b78ce96aacfdb1fef748c8e0",
+  "chainPackages": {
+    "node_modules/@next/eslint-plugin-next": {
+      "version": "16.3.6",
+      "packageJsonSha256": "e3bf0284d61b91c8362fe351e2e85824baed092971ffc9ea98bcd19215e9bb05",
+      "lockRecordSha256": "c3ec0dfeed43da814aad657763d71a7c29121be7707d35b93c90e6bc2d4e4027"
+    },
+    "node_modules/@ts-morph/common": {
+      "version": "0.27.0",
+      "packageJsonSha256": "73d43860f5e593580b5537f904369af34c6b59343f408532f01d6b84d40c4e4c",
+      "lockRecordSha256": "c9c821b578ad1de9f573a543de6759fa42137b94855ee173fdd9115e20634eb4"
+    },
+    "node_modules/@ts-morph/common/node_modules/fast-glob": {
+      "version": "3.3.3",
+      "packageJsonSha256": "be3e54394e824554b06a85529804f11c59b9f2fa7ca6d579fefe71a5d5cf78ee",
+      "lockRecordSha256": "8d4bb9def104aaa8fa33b41088d833174156a5258f87c0bbee3e34788964a9cf"
+    },
+    "node_modules/braces": {
+      "version": "3.0.3",
+      "packageJsonSha256": "56f08b888a4f30dc7cf8a7dbb36ffe92b737912ba36abe9d069d32167c957ac7",
+      "lockRecordSha256": "6971eb7cd446f0341d2c9deb7de387efc52fd606fcc042baf0ff3c32b429d5b6"
+    },
+    "node_modules/eslint-config-next": {
+      "version": "16.3.6",
+      "packageJsonSha256": "cd2665fa1675ee4d36bff393ad0f083bd791f1e1c5e7add2ea803a35cae95f41",
+      "lockRecordSha256": "a25b50c34ab35f9db84047c6f031b4a367d89a63f61ff508ff65bc26fde6484f"
+    },
+    "node_modules/fast-glob": {
+      "version": "3.3.1",
+      "packageJsonSha256": "8ad595ebee47ca89a32323be8dd2a21e6074e91db95e8add8b628af4ff025981",
+      "lockRecordSha256": "535b00d993eb623a227026f85abe3257507bb294165999e09bf81791f7a1ce9c"
+    },
+    "node_modules/micromatch": {
+      "version": "4.0.8",
+      "packageJsonSha256": "94dbc881c0329813f2481f35fcfa725a2285d45926d33e9b9b8b80b28487752b",
+      "lockRecordSha256": "3b47968d0146976f2dafc4aac0557fb8d5e18ebabc4d70651546da9dbbf14ed9"
+    },
+    "node_modules/shadcn": {
+      "version": "4.21.0",
+      "packageJsonSha256": "1f647a1d5e77048f9eff94c5b9a70bdf48ce82552d554d2b80365e3b3958db5e",
+      "lockRecordSha256": "90b7bc862e8824cc2660e3f8ac019fed3ffb96bdee18867cf4697e8a1f75206a"
+    },
+    "node_modules/shadcn/node_modules/fast-glob": {
+      "version": "3.3.3",
+      "packageJsonSha256": "be3e54394e824554b06a85529804f11c59b9f2fa7ca6d579fefe71a5d5cf78ee",
+      "lockRecordSha256": "8d4bb9def104aaa8fa33b41088d833174156a5258f87c0bbee3e34788964a9cf"
+    },
+    "node_modules/ts-morph": {
+      "version": "26.0.0",
+      "packageJsonSha256": "73a87be066688f2d6610340697bd87a60fe60213c06d653fa323bab03f91520f",
+      "lockRecordSha256": "e4f7d0a5f7ce1ffaec8d11530d624e1652b937c88122d7008f7cff7a2b0b23fb"
+    }
+  },
+  "upstreamAffected": [
+    {
+      "package": {
+        "name": "braces",
+        "ecosystem": "npm",
+        "purl": "pkg:npm/braces"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "last_affected": "3.0.3"
+            }
+          ]
+        }
+      ],
+      "database_specific": {
+        "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-vfj7-8cjw-p6xm/GHSA-vfj7-8cjw-p6xm.json"
+      }
+    }
+  ]
+}

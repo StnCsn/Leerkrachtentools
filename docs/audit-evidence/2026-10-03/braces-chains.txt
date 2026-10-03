@@ -1,0 +1,25 @@
+braces@3.0.3 dev
+node_modules/braces
+  braces@"^3.0.3" from micromatch@4.0.8
+  node_modules/micromatch
+    micromatch@"^4.0.8" from fast-glob@3.3.3
+    node_modules/@ts-morph/common/node_modules/fast-glob
+      fast-glob@"^3.3.3" from @ts-morph/common@0.27.0
+      node_modules/@ts-morph/common
+        @ts-morph/common@"~0.27.0" from ts-morph@26.0.0
+        node_modules/ts-morph
+          ts-morph@"^26.0.0" from shadcn@4.21.0
+          node_modules/shadcn
+            dev shadcn@"^4.21.0" from the root project
+    micromatch@"^4.0.4" from fast-glob@3.3.1
+    node_modules/fast-glob
+      fast-glob@"3.3.1" from @next/eslint-plugin-next@16.3.6
+      node_modules/@next/eslint-plugin-next
+        @next/eslint-plugin-next@"16.3.6" from eslint-config-next@16.3.6
+        node_modules/eslint-config-next
+          dev eslint-config-next@"16.3.6" from the root project
+    micromatch@"^4.0.8" from fast-glob@3.3.3
+    node_modules/shadcn/node_modules/fast-glob
+      fast-glob@"^3.3.3" from shadcn@4.21.0
+      node_modules/shadcn
+        dev shadcn@"^4.21.0" from the root project

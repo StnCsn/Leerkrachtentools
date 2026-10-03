@@ -1,0 +1,146 @@
+{
+  "runId": 37135009667,
+  "runNumber": 242,
+  "commit": "3761a6c132d4898e73a2b0659d9da3269e172b08",
+  "url": "https://github.com/tibodepauw/Leerkrachtentools/actions/runs/37135009667",
+  "jobs": [
+    {
+      "id": 111237661048,
+      "name": "quality",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 37135009667,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Setup Node.js",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Generate Next.js route types",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Lint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Typecheck",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Test",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Standalone smoke test",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Linux parser isolation and kernel limits",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Install browser for security regression tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Browser security regression tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Audit production and build dependencies",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 14
+        },
+        {
+          "name": "Post Setup Node.js",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 27
+        },
+        {
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        }
+      ]
+    }
+  ],
+  "testSummary": {
+    "files": 153,
+    "passed": 690,
+    "skipped": 1
+  },
+  "browserCommandsPassed": 8,
+  "proofLines": [
+    "2026-10-03T15:56:48.7465294Z braces@3.0.3: verified local depth backport applied at node_modules/braces (not an official fixed release).",
+    "2026-10-03T15:57:43.0998433Z  Test Files  153 passed (153)",
+    "2026-10-03T15:57:43.1001478Z       Tests  690 passed | 1 skipped (691)",
+    "2026-10-03T15:58:16.1205659Z Standalone smoke passed: session, PDF parsing, malformed upload and logout.",
+    "2026-10-03T15:58:32.5712282Z Standalone smoke passed: session, PDF parsing, malformed upload and logout.",
+    "2026-10-03T15:58:32.5936072Z Linux isolation passed: denied host files/writes/network; CPU deadline; native OOM limit; real standalone parsing.",
+    "2026-10-03T15:59:29.2658897Z Client session isolation passed: committed IndexedDB writes, account separation and rejection of late reads/writes across logout and re-login.",
+    "2026-10-03T15:59:29.2660723Z Legacy ten-result browser cache passed (chromium): at most five matches and four alternatives.",
+    "2026-10-03T15:59:37.5993599Z Analytics consent wire checks passed: disabled configuration, before consent, reject, allow, withdrawal, reload, expiry; no content, identity, retries or external scripts.",
+    "2026-10-03T15:59:48.0679810Z Analytics consent wire checks passed: disabled configuration, before consent, reject, allow, withdrawal, reload, expiry; no content, identity, retries or external scripts.",
+    "2026-10-03T16:00:00.1853496Z Analytics consent wire checks passed: disabled configuration, before consent, reject, allow, withdrawal, reload, expiry; no content, identity, retries or external scripts.",
+    "2026-10-03T16:00:00.9619540Z Preview security passed (chromium): malicious DOCX CSS isolated; scripts, resource loads and link navigation blocked.",
+    "2026-10-03T16:00:02.8745804Z Preview security passed (firefox): malicious DOCX CSS isolated; scripts, resource loads and link navigation blocked.",
+    "2026-10-03T16:00:03.9984001Z Preview security passed (webkit): malicious DOCX CSS isolated; scripts, resource loads and link navigation blocked.",
+    "2026-10-03T16:00:20.5291505Z Browser security passed: shared storage purge, offline masking, history return, account switch, logout across two tabs.",
+    "2026-10-03T16:00:23.3642086Z Standalone smoke passed: session, PDF parsing, malformed upload and logout.",
+    "2026-10-03T16:00:24.7610198Z - braces@3.0.3: GHSA-vfj7-8cjw-p6xm ",
+    "2026-10-03T16:00:24.7610612Z OSV controleerde 960 productie- en buildpackages."
+  ]
+}

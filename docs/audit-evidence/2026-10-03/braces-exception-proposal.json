@@ -1,0 +1,61 @@
+{
+  "status": "proposal-not-active",
+  "baseCommit": "185b549b111ae512cdfa65d495cfb03c1785e67d",
+  "expiresAt": "2026-10-17T00:00:00.000Z",
+  "node": "22.23.3",
+  "proposalTests": {
+    "passed": 31,
+    "failed": 0,
+    "skipped": 0
+  },
+  "surroundingRegressions": {
+    "passed": 15,
+    "failed": 0,
+    "skipped": 0
+  },
+  "lint": "passed",
+  "typecheck": "passed",
+  "actualProof": {
+    "installedBracesFilesHashed": 10,
+    "chainPackagesBound": 10,
+    "dependencyChains": 3,
+    "freshProductionInstallPackages": 290,
+    "command": "npm ci --omit=dev --no-audit --no-fund",
+    "standalone": "existing build, application and dependency inputs unchanged",
+    "upstream": "live OSV and npm latest metadata; no official fix",
+    "result": "review-only eligible; active audit unchanged"
+  },
+  "activeFullAudit": {
+    "exitCode": 1,
+    "packageVersions": 960,
+    "findings": [
+      {
+        "package": "braces",
+        "version": "3.0.3",
+        "id": "GHSA-vfj7-8cjw-p6xm"
+      }
+    ]
+  },
+  "unchangedControlsSha256": {
+    "scripts/audit-production-dependencies.mjs": "64aa37c3623c9d090af4deae0ed32155aaa77f15f74407c2d83df94542f55a2d",
+    ".github/workflows/ci.yml": "dfd32468360f43f70c0a2e7f42c56c22b423ebe9fe41954cf40d2776e710ee25",
+    "package.json": "7578d0e560483a1993fbbb244b30c51cd087a58f810c37bebe36c39d06493903",
+    "package-lock.json": "fe213c27029069f8def20db1281faf7edcbf4e8daeec6f1fcd4eec6271ada4b4",
+    "scripts/apply-braces-security-patch.mjs": "40c1e170c3f9e554ed6c8443813f307bd93fae6ada5aeed8723ae4d3f6b4668a",
+    "patches/braces-3.0.3-depth.json": "dabe6ac03c7b468c03175090d35fd0a051156ba7f3134051bf4a4b37ea1e4e86"
+  },
+  "linuxLocal": "blocked: no hostroot/systemd/writable cgroups",
+  "npmVariants": [
+    {
+      "version": "10.9.9",
+      "node": "22.23.3",
+      "regressionsPassed": 46
+    },
+    {
+      "version": "11.9.0",
+      "node": "22.23.3",
+      "regressionsPassed": 46
+    }
+  ],
+  "chainNormalization": "Only computed npm-explain devOptional is omitted; every lock flag and actual dependency edge remains bound."
+}
