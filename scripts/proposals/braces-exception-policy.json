@@ -70,5 +70,30 @@
       "packageJsonSha256": "73a87be066688f2d6610340697bd87a60fe60213c06d653fa323bab03f91520f",
       "lockRecordSha256": "e4f7d0a5f7ce1ffaec8d11530d624e1652b937c88122d7008f7cff7a2b0b23fb"
     }
-  }
+  },
+  "upstreamAffected": [
+    {
+      "package": {
+        "name": "braces",
+        "ecosystem": "npm",
+        "purl": "pkg:npm/braces"
+      },
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "last_affected": "3.0.3"
+            }
+          ]
+        }
+      ],
+      "database_specific": {
+        "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/09/GHSA-vfj7-8cjw-p6xm/GHSA-vfj7-8cjw-p6xm.json"
+      }
+    }
+  ]
 }

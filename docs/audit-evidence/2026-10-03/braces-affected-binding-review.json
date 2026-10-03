@@ -1,0 +1,41 @@
+{
+  "status": "proposal-not-active",
+  "reviewBaseCommit": "fa01a4f59acacf623c1fd83224d2ef7779283b57",
+  "scope": "Exact full relevant npm/braces affected records; retain record/range/event ordering and all fields; normalize object key order only",
+  "expiresAt": "2026-10-17T00:00:00.000Z",
+  "beforeFix": {
+    "proposalTestsFailed": 25,
+    "proposalTestsPassed": 32,
+    "confirmedUnexpectedAcceptance": [
+      "missing introduced",
+      "changed introduced",
+      "extra relevant affected record",
+      "extra range",
+      "changed range type"
+    ]
+  },
+  "afterFix": {
+    "proposalTestsPassed": 57,
+    "surroundingTestsPassed": 15,
+    "failed": 0,
+    "skipped": 0,
+    "npmVariants": [
+      "10.9.9",
+      "11.9.0"
+    ],
+    "node": "22.23.3"
+  },
+  "positiveMetadataTest": "modified/summary outside affected and object-key order only",
+  "lint": "passed",
+  "typecheck": "passed",
+  "actualProof": "passed with real installed bytes/chains, fresh omitted-dev install (290 packages), existing unchanged-application standalone and live upstream metadata",
+  "unchanged": [
+    "all pre-existing policy fields",
+    "active audit",
+    "workflow",
+    "package/lock",
+    "backport",
+    "Linux guard",
+    "branch protection"
+  ]
+}

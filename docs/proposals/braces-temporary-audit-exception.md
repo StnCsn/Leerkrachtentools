@@ -126,6 +126,26 @@ Na lokaal bewijs worden opnieuw het officiële OSV-record voor deze GHSA en
 Onbeschikbare/ongeldige metadata geeft geen uitzondering. Een `fixed`-event,
 gewijzigde affected range, ingetrokken advisory of andere nieuwste release
 stopt de uitzondering voor gerichte herbeoordeling. De checker doet geen upgrade.
+
+Reviewcorrectie op begincommit `fa01a4f59acacf623c1fd83224d2ef7779283b57`:
+de relevante npm/braces affected-records zijn nu **volledig en exact** gebonden
+aan `upstreamAffected` in de beoordeelde policy. Het huidige record bevat één
+`SEMVER`-range met exact de geordende events `introduced: "0"` en
+`last_affected: "3.0.3"`. Alle velden van het relevante record blijven onderdeel
+van de vergelijking, ook package/purl, eventuele versions en aanvullende velden.
+Er worden geen records, ranges of events samengevoegd of weggefilterd om een
+overeenkomende grens te vinden. Ontbrekende, extra, gewijzigde of verkeerd
+gevormde records/ranges/events en een ander range-type vereisen herbeoordeling.
+Niet-lege records/arrays en één bekend event-key met stringwaarde worden vóór
+de vergelijking gevalideerd. Een officieel `fixed`-event blijft afzonderlijk
+de gerichte vervanging van de backport afdwingen.
+
+Alleen object-keyvolgorde wordt genormaliseerd; record-, range- en eventvolgorde
+blijven exact. Wijzigingstijd, summary en andere beschrijvende metadata **buiten**
+de relevante affected-records bepalen deze binding niet. Nieuwe velden binnen
+een relevant record worden niet stilzwijgend als irrelevante metadata genegeerd.
+Een positief geval met gewijzigde modified/summary en andere object-keyvolgorde
+bewijst dat deze encoding-/prosewijzigingen de controle niet laten falen.
 Bij een officiële herstelrelease: officiële advisory/versies onderzoeken,
 gericht bijwerken, oorspronkelijke suite/glob/securityregressies en volledige
 quality uitvoeren, daarna backport en uitzondering verwijderen. Geen verlenging
@@ -196,8 +216,12 @@ blijft ook braces zelf blokkerend. De datum is niet automatisch verlengbaar.
 | Extra GHSA, andere braces-versie of brace-expansion met dezelfde GHSA | Blijft blokkerend; wouldPass=false |
 | Eén milliseconde vóór / exact op / na vervaldatum, ook tijdens lopende requests | Voorstel mogelijk / afgewezen / afgewezen |
 | Nieuwe release, officieel fixed-event of metadata-uitval | Afgewezen, gerichte herbeoordeling vereist |
+| Ontbrekend/gewijzigd introduced-event; ontbrekend/extra record of range | Afgewezen, herbeoordeling vereist |
+| Lege/missende/ongeldige ranges/events, verkeerde eventwaarde, multi-key event | Afgewezen, herbeoordeling vereist |
+| Andere/missende/ongeldige range-type; omgekeerde events; toegevoegde versions | Afgewezen, herbeoordeling vereist |
+| Alleen modified/summary en object-keyvolgorde gewijzigd | Ongewijzigde binding, alleen review-geschiktheid |
 
-Node 22-wrapper: 31 voorsteltests + 9 bestaande backport/installertests +
-6 bestaande auditvalidatietests: **46 geslaagd, 0 mislukt, 0 overgeslagen**.
+Node 22-wrapper: 57 voorsteltests + 9 bestaande backport/installertests +
+6 bestaande auditvalidatietests: **72 geslaagd, 0 mislukt, 0 overgeslagen**.
 Lint is geslaagd. De actuele actieve audit en volledige GitHub-uitkomst worden
 in PR #34 vermeld; er wordt geen groene audit of geactiveerde uitzondering geclaimd.

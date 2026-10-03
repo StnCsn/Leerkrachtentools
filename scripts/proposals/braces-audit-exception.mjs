@@ -8,6 +8,7 @@ const policy = JSON.parse(readFileSync(new URL("./braces-exception-policy.json",
 const sha256 = bytes => createHash("sha256").update(bytes).digest("hex");
 const readJson = filename => JSON.parse(readFileSync(filename, "utf8"));
 const check = (condition, message) => { if (!condition) throw new Error(message); };
+const isRecord = value => value !== null && typeof value === "object" && !Array.isArray(value);
 
 function canonical(value) {
   if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
@@ -125,15 +126,20 @@ async function verifyUpstream(fetchImpl) {
     check(response.ok, "Upstream metadata unavailable");
     return response.json();
   }));
-  check(advisory.id === policy.advisory && !advisory.withdrawn && Array.isArray(advisory.affected), "Invalid or changed upstream advisory");
+  check(isRecord(advisory) && advisory.id === policy.advisory && !advisory.withdrawn && Array.isArray(advisory.affected), "Invalid or changed upstream advisory");
+  const reviewRequired = "Changed upstream affected records: targeted review required";
+  check(advisory.affected.every(item => isRecord(item) && isRecord(item.package) && typeof item.package.ecosystem === "string" && item.package.ecosystem.length > 0 && typeof item.package.name === "string" && item.package.name.length > 0), reviewRequired);
   const affected = advisory.affected.filter(item => item.package?.ecosystem === "npm" && item.package.name === "braces");
-  check(affected.length > 0 && affected.every(item => Array.isArray(item.ranges)), "Incomplete upstream advisory");
+  check(affected.length > 0 && affected.every(item => Array.isArray(item.ranges) && item.ranges.length > 0), reviewRequired);
   const events = affected.flatMap(item => item.ranges.flatMap(range => {
-    check(Array.isArray(range.events), "Incomplete upstream range");
+    check(isRecord(range) && ["SEMVER", "ECOSYSTEM", "GIT"].includes(range.type) && Array.isArray(range.events) && range.events.length > 0, reviewRequired);
+    check(range.events.every(event => isRecord(event) && Object.keys(event).length === 1 && Object.entries(event).every(([key, version]) => ["introduced", "fixed", "last_affected", "limit"].includes(key) && typeof version === "string" && version.length > 0)), reviewRequired);
     return range.events;
   }));
   check(!events.some(event => event.fixed), "Official fix announced: investigate and replace backport");
-  check(events.some(event => event.last_affected === "3.0.3"), "Changed upstream affected range");
+  // Pin every relevant record/field/range/event, not just one matching boundary.
+  // Only object-key order is normalized; array contents and order remain exact.
+  check(canonical(affected) === canonical(policy.upstreamAffected), reviewRequired);
   check(release.name === "braces" && release.version === "3.0.3", "New upstream release: targeted review required");
 }
 

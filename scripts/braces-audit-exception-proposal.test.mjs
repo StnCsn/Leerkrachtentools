@@ -221,4 +221,48 @@ describe("INACTIVE braces exception proposal", () => {
     };
     await expect(assessBracesExceptionProposal(options)).rejects.toThrow(change === "release" ? "New upstream release" : change === "fixed-advisory" ? "Official fix announced" : "Synthetic metadata outage");
   });
+
+  it.each([
+    ["missing introduced event", data => data.affected[0].ranges[0].events.shift()],
+    ["changed introduced event", data => { data.affected[0].ranges[0].events[0].introduced = "1.0.0"; }],
+    ["extra relevant affected record", data => data.affected.push(structuredClone(data.affected[0]))],
+    ["missing relevant affected record", data => { data.affected = []; }],
+    ["extra range", data => data.affected[0].ranges.push(structuredClone(data.affected[0].ranges[0]))],
+    ["empty ranges", data => { data.affected[0].ranges = []; }],
+    ["missing ranges", data => { delete data.affected[0].ranges; }],
+    ["non-array ranges", data => { data.affected[0].ranges = {}; }],
+    ["null range", data => { data.affected[0].ranges = [null]; }],
+    ["array instead of range object", data => { data.affected[0].ranges = [[]]; }],
+    ["missing events", data => { delete data.affected[0].ranges[0].events; }],
+    ["empty events", data => { data.affected[0].ranges[0].events = []; }],
+    ["non-array events", data => { data.affected[0].ranges[0].events = {}; }],
+    ["null event", data => { data.affected[0].ranges[0].events[0] = null; }],
+    ["non-object event", data => { data.affected[0].ranges[0].events[0] = "introduced:0"; }],
+    ["empty event", data => { data.affected[0].ranges[0].events[0] = {}; }],
+    ["non-string event version", data => { data.affected[0].ranges[0].events[0].introduced = 0; }],
+    ["multi-key event", data => { data.affected[0].ranges[0].events[0].limit = "3.0.4"; }],
+    ["reversed events", data => data.affected[0].ranges[0].events.reverse()],
+    ["changed range type", data => { data.affected[0].ranges[0].type = "ECOSYSTEM"; }],
+    ["missing range type", data => { delete data.affected[0].ranges[0].type; }],
+    ["invalid range type", data => { data.affected[0].ranges[0].type = 1; }],
+    ["extra empty range alongside the valid range", data => data.affected[0].ranges.push({ type: "SEMVER", events: [] })],
+    ["extra empty record alongside the valid record", data => data.affected.push({ package: structuredClone(data.affected[0].package), ranges: [] })],
+    ["added affected versions", data => { data.affected[0].versions = ["3.0.3"]; }],
+  ])("requires upstream re-review for %s", async (_label, mutate) => {
+    const options = fixture();
+    const changed = structuredClone(advisory);
+    mutate(changed);
+    options.fetchImpl = async url => ({ ok: true, json: async () => url.includes("api.osv.dev") ? changed : { name: "braces", version: "3.0.3" } });
+    await expect(assessBracesExceptionProposal(options)).rejects.toThrow(/targeted review required/);
+  });
+
+  it("ignores modification time and prose metadata without relaxing the affected binding", async () => {
+    const options = fixture();
+    const unchanged = structuredClone(advisory);
+    unchanged.modified = "2026-10-04T00:00:00Z";
+    unchanged.summary = "Updated advisory wording";
+    unchanged.affected[0] = Object.fromEntries(Object.entries(unchanged.affected[0]).reverse());
+    options.fetchImpl = async url => ({ ok: true, json: async () => url.includes("api.osv.dev") ? unchanged : { name: "braces", version: "3.0.3" } });
+    expect((await assessBracesExceptionProposal(options)).reviewOnly).toBe(true);
+  });
 });
