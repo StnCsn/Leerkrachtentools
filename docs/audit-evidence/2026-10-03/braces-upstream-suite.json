@@ -1,0 +1,59 @@
+{
+  "release": {
+    "package": "braces",
+    "version": "3.0.3",
+    "gitHead": "74b2db2938fad48a2ea54a9c8bf27a37a62c350d",
+    "archive": "https://codeload.github.com/micromatch/braces/tar.gz/74b2db2938fad48a2ea54a9c8bf27a37a62c350d",
+    "archiveSha256": "697311aa470de468a1e5cac70ab227262dce9e38f5a4e0eef306d515b71222af"
+  },
+  "runner": {
+    "node": "22.23.3",
+    "mocha": "6.2.3",
+    "bash-path": "2.0.1",
+    "fill-range": "7.1.1",
+    "timeoutSeconds": 60,
+    "heapMiB": 256,
+    "command": "node --max-old-space-size=256 <runner>/node_modules/mocha/bin/_mocha --reporter json",
+    "testFilesUnchanged": true,
+    "testFilter": null
+  },
+  "testFilesSha256": {
+    "test/bash-compiled-ranges.js": "7e8a10ed467f19dd3723ebcb02c33ff13c973115ea101c8504b2fd32f9b3e9e3",
+    "test/bash-compiled-sets.js": "ff2dda0bdd8d1db4994f814d75117494e53b2a83cafd957048ddc9bca619d669",
+    "test/bash-expanded-ranges.js": "69c55956b57fe27160ce9dfab92a0a552001ee7aa992dc8d077410a282b92097",
+    "test/bash-expanded-sets.js": "b0759bb53728d98a71e4b06f566301f5aa3ccf28e8f99eaa2634fda8d877f96c",
+    "test/bash-spec.js": "c5208d38999e0fd0ac12e4bde7240b8e93890dff160ddb78ac62883f7ef632f4",
+    "test/braces.compile.js": "c47a9565c0be7287958667f31f64a060a38f91fbe98d27953b770ee2736ff077",
+    "test/braces.expand.js": "a6d70d8bec87025c58a6e14fffa9dcb3c0ae890fc2232e8b0af0966190fa733b",
+    "test/braces.parse.js": "4688e08098264b7851f03ea894d30bd992fea307f8a334bf833a4e2bdae30a87",
+    "test/minimatch.js": "6b65901c2a0a2b680dbe1178311578037ee6601eab1631929ac2d10b2e37dd08",
+    "test/multiples.js": "d0b779166faf40693b5898a3766ae6c91aec600a714cf1b36a8b85067e90b7ac",
+    "test/readme.js": "91202e5e3e926d47b11ebe5f2b04db560c1048aac97e67f61d521ce0cb220b15",
+    "test/regression.js": "1595ae9cea47947b1ea258673151c2428a780859fc1efd5d9d92b035f1887470"
+  },
+  "original": {
+    "suites": 49,
+    "tests": 764,
+    "passes": 764,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-10-03T15:53:43.277Z",
+    "end": "2026-10-03T15:53:43.332Z",
+    "duration": 55
+  },
+  "localBackport": {
+    "suites": 49,
+    "tests": 764,
+    "passes": 764,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-10-03T15:53:49.728Z",
+    "end": "2026-10-03T15:53:49.796Z",
+    "duration": 68
+  },
+  "additionalRegressions": {
+    "passed": 9,
+    "failed": 0,
+    "skipped": 0
+  }
+}
