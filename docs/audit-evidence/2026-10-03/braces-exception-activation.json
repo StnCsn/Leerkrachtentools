@@ -1,0 +1,88 @@
+{
+  "activationApprovalCommit": "e15d93d14f3320c3f317b6638a6b29e206e1771a",
+  "branch": "codex/fix-braces-advisory-2026-10-03",
+  "expiresAt": "2026-10-17T00:00:00.000Z",
+  "scope": {
+    "package": "braces",
+    "version": "3.0.3",
+    "advisory": "GHSA-vfj7-8cjw-p6xm",
+    "usage": "exact reviewed dev/build chains only"
+  },
+  "reviewedPinsUnchanged": true,
+  "workflowPackageLockAndPatchMechanismUnchanged": true,
+  "local": {
+    "node": "22.23.3",
+    "npmCi": {
+      "status": "passed",
+      "packages": 862,
+      "scriptsEnabled": true
+    },
+    "lint": "passed",
+    "typegen": "passed",
+    "typecheck": "passed",
+    "build": "passed",
+    "standaloneBrowser": "passed",
+    "directedTests": {
+      "passed": 89,
+      "skipped": 0,
+      "files": 5,
+      "npmVersions": [
+        "11.9.0",
+        "10.9.9"
+      ],
+      "realAuditCommandSubprocesses": 17
+    },
+    "fullTests": {
+      "files": 155,
+      "passed": 764,
+      "skipped": 1,
+      "total": 765
+    },
+    "activeFullAudit": {
+      "exit": 0,
+      "queries": 960,
+      "rawFindings": 1,
+      "temporarilyMitigated": 1,
+      "otherBlocking": 0,
+      "visibleWarning": true,
+      "freshProductionInstall": true,
+      "liveUpstreamVerification": true
+    },
+    "productionOnlyAudit": {
+      "exit": 0,
+      "queries": 317,
+      "findings": 0,
+      "exceptionPath": false
+    },
+    "nativeNpmAudit": {
+      "exit": 1,
+      "highPackageChainReports": 8,
+      "uniqueAdvisories": [
+        "GHSA-vfj7-8cjw-p6xm"
+      ]
+    },
+    "linuxIsolation": "blocked: no real hostroot/systemd/writable cgroups"
+  },
+  "upstream": {
+    "officialFixedRelease": null,
+    "npmLatest": "3.0.3",
+    "pullRequest72": "open, unmerged",
+    "patchHead": "28d440b5dd449dbf1fe6f3506cf94ecca4d02660"
+  },
+  "githubFinalCommitAndResults": "Recorded in PR #34 after definitive head CI; historical results are separate",
+  "merge": false,
+  "deployment": false,
+  "logs": {
+    "activation-npm-ci.log": "cb05a4ba6f52b28716d76ce4e105a3719b5254384605a555a8ca5ebeaf244256",
+    "activation-directed.log": "3aae0c6abc5946431c6604dcd47c629668a65d6d254a3fcc3aa40f4bf56511de",
+    "activation-npm10-tests.log": "6f1cae5ffbcf0be22f7a54d73a8b89648cdbad037dc2f336ac2df16967637343",
+    "activation-lint.log": "6500e24bce883206a0e8ff6c45174281bd54ea09bb8284ebc59f7c4d7908b8c8",
+    "activation-typecheck.log": "9260e6944d56bf52b1036dc7be12b6c28595112a9aad2bf7a21bf4cfbf2ad380",
+    "activation-full-tests.log": "9591a9945a7a4bd5804896e42fe75feb9f394584b785eb62c180a871811ea257",
+    "activation-build.log": "44f482ec27e408bd12e4b21795d5de964dd1d3c2c5d557fd447e531984025304",
+    "activation-active-audit.log": "fdb13ffd589766c304e335b45aad3c83c6f9a15dc81a4f5a9978b83eb04758d5",
+    "activation-production-audit.log": "45de1c7d72c65c5062838e6b52ce4dff002e33bdbe2df3e61b2126d6c6c1925c",
+    "activation-standalone-browser.log": "d02b1ae0d67dcdb68358063bbcebde5655c870057a2a22da0e48ee27ba072798",
+    "activation-npm-audit.json": "a772f335e3d5ee34d809c555c981db9d4c7322c87cb9c605619b80152271d6fc"
+  }
+}

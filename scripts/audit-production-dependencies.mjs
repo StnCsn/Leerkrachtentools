@@ -1,5 +1,8 @@
 import { readFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
+import path from "node:path";
+import { assessBracesException } from "./proposals/braces-audit-exception.mjs";
+import { withProductionAuditInstall } from "./with-production-audit-install.mjs";
 
 const OSV_QUERY_URL = "https://api.osv.dev/v1/querybatch";
 const MAX_ATTEMPTS = 3;
@@ -100,6 +103,20 @@ async function main() {
     );
   }
   process.exitCode = 1;
+  if (includeDev && vulnerabilities.some(item => item.package === "braces" && item.version === "3.0.3" && item.id === "GHSA-vfj7-8cjw-p6xm")) {
+    try {
+      const root = process.cwd();
+      const result = await withProductionAuditInstall(root, productionRoot => assessBracesException({
+        root, productionRoot, standaloneRoot: path.join(root, ".next/standalone"), vulnerabilities,
+      }));
+      console.error(result.warning);
+      console.error(`${vulnerabilities.length} findings; ${result.temporarilyMitigated.length} tijdelijk gemitigeerd; ${result.blocking.length} overige blokkerende findings.`);
+      if (result.passes) process.exitCode = 0;
+    } catch (error) {
+      console.error(`Tijdelijke braces-mitigatie afgewezen: ${error.message}`);
+      console.error(`${vulnerabilities.length} findings blijven blokkerend; 0 tijdelijk gemitigeerd.`);
+    }
+  }
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

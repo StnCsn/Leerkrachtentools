@@ -1,4 +1,4 @@
-// REVIEW ONLY. Not imported by the live audit; no CLI or activation switch.
+// Approved temporary mitigation: exact policy, installed bytes and current upstream proof required.
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { lstatSync, readFileSync, readdirSync, realpathSync } from "node:fs";
@@ -143,16 +143,16 @@ async function verifyUpstream(fetchImpl) {
   check(release.name === "braces" && release.version === "3.0.3", "New upstream release: targeted review required");
 }
 
-export async function assessBracesExceptionProposal({ root, productionRoot, standaloneRoot, vulnerabilities, clock = Date.now, fetchImpl = fetch }) {
-  check(policy.status === "proposal-not-active", "Unexpected proposal status");
+export async function assessBracesException({ root, productionRoot, standaloneRoot, vulnerabilities, clock = Date.now, fetchImpl = fetch }) {
+  check(policy.status === "approved-active", "Unexpected exception status");
   const requireUnexpired = () => {
     const now = clock();
-    check(Number.isFinite(now) && now < Date.parse(policy.expiresAt), `Proposal expired at ${policy.expiresAt}; no automatic renewal`);
+    check(Number.isFinite(now) && now < Date.parse(policy.expiresAt), `Exception expired at ${policy.expiresAt}; no automatic renewal`);
   };
   requireUnexpired();
   check(Array.isArray(vulnerabilities) && vulnerabilities.every(item => item && typeof item.package === "string" && typeof item.version === "string" && typeof item.id === "string"), "Invalid audit findings");
   const target = item => item.package === policy.package && item.version === policy.version && item.id === policy.advisory;
-  check(vulnerabilities.some(target), "Exact advisory absent: retire or re-review proposal");
+  check(vulnerabilities.some(target), "Exact advisory absent: retire or re-review exception");
   root = path.resolve(root);
   verifyInstalled(root);
   verifyAbsent(root, path.resolve(productionRoot), path.resolve(standaloneRoot));
@@ -160,10 +160,9 @@ export async function assessBracesExceptionProposal({ root, productionRoot, stan
   requireUnexpired(); // Metadata requests may cross the deadline.
   const blocking = vulnerabilities.filter(item => !target(item));
   return {
-    reviewOnly: true,
-    wouldPassAfterSeparateApproval: blocking.length === 0,
+    passes: blocking.length === 0,
     temporarilyMitigated: vulnerabilities.filter(target),
     blocking,
-    warning: `TIJDELIJK GEMITIGEERD (voorstel, NIET ACTIEF): braces@3.0.3 ${policy.advisory}; lokale backport, geen officiële herstelrelease; vervalt ${policy.expiresAt}`,
+    warning: `TIJDELIJK GEMITIGEERD: braces@3.0.3 ${policy.advisory}; lokale backport, geen officiële herstelrelease; vervalt ${policy.expiresAt}`,
   };
 }

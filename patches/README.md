@@ -21,8 +21,14 @@ moeten die fout nog steeds afhandelen. Dit is geen algemeen CPU-/outputbudget.
 Installaties met `--ignore-scripts` passen deze mitigatie **niet** toe en zijn
 hiervoor ongeschikt. Regressies testen de daadwerkelijk geïnstalleerde bytes;
 de normale CI gebruikt `npm ci` met scripts. De OSV-audit blijft actief en meldt
-`GHSA-vfj7-8cjw-p6xm` zolang 3.0.3 als getroffen bekendstaat: geen uitzondering,
-geen aangepaste versieclaim, geen verlaagde drempel.
+`GHSA-vfj7-8cjw-p6xm` zolang 3.0.3 als getroffen bekendstaat. Na afzonderlijk
+akkoord voor voorstelcommit `e15d93d` kan uitsluitend de volledige `--all`-audit
+de exacte triple tijdelijk als gemitigeerd accepteren, na verificatie van alle
+beoordeelde geïnstalleerde hashes, ketens, verse productie-installatie, standalone
+én live upstreammetadata. De waarschuwing blijft zichtbaar; andere findings en
+iedere guardfout geven exit 1. Vervalt **17 oktober 2026 om 00:00 UTC**, zonder
+verlenging. Geen officiële herstelreleaseclaim of verlaagde auditdrempel.
+Zie `docs/proposals/braces-temporary-audit-exception.md` voor de exacte policy.
 
 Zodra een officiële herstelrelease beschikbaar is: controleer advisory en
 compatibiliteit, update gericht, verwijder de postinstall-hook/backport en behoud

@@ -5,9 +5,73 @@ Begincommit op opnieuw opgehaalde actuele `main`:
 Branch: `codex/fix-braces-advisory-2026-10-03`. Definitieve geteste commit en
 GitHub-CI-uitkomst staan in de PR. Geen merge of deployment.
 
-Aanvulling ter beoordeling: [tijdelijk audituitzonderingsvoorstel](proposals/braces-temporary-audit-exception.md).
-De referentie en negatieve tests zijn afzonderlijk toegevoegd; **de uitzondering
-is niet actief**. Het huidige auditcommando blijft deze GHSA blokkeren.
+Activatie na expliciet akkoord voor voorstelcommit
+`e15d93d14f3320c3f317b6638a6b29e206e1771a`: de
+[tijdelijke uitzondering](proposals/braces-temporary-audit-exception.md) is nu
+gekoppeld aan uitsluitend de volledige `--all`-audit. Bij geldig actueel bewijs
+blijft één raw finding zichtbaar als **tijdelijk gemitigeerd**, met exit 0;
+geen officiële herstelrelease of afwezigheid van kwetsbaarheden geclaimd.
+Alle hash-/keten-/productie-/standalone-/upstreamgates blijven behouden.
+Iedere afwijking of andere advisory geeft exit 1. Vervalt onvoorwaardelijk op
+**2026-10-17T00:00:00.000Z**. Workflow en branchbescherming ongewijzigd.
+
+De tabellen verderop beschrijven eerdere backport-/voorstelruns en hun rode audit.
+Actueel activatiebewijs staat hieronder; definitieve head en GitHub-run staan
+ook in [PR #34](https://github.com/tibodepauw/Leerkrachtentools/pull/34).
+
+## Actuele activatieverificatie
+
+Activatiebegincommit: `e15d93d14f3320c3f317b6638a6b29e206e1771a`.
+Alleen reviewstatus/resultaatlabels, de vooraf beschreven auditkoppeling en
+verse productie-installatie/cleanup-helper zijn geactiveerd. Hashes, chain-records,
+upstreamAffected, expiry, dependencyversies/integrities, patchmechanisme,
+workflow en controles zijn byte-/structuurgewijs gelijk aan het goedgekeurde
+voorstel; geen nieuwe runtimebypass of tijd-/proofmapoverride.
+
+| Controle met bestaande Node 22-/browserwrapper | Werkelijke lokale uitkomst |
+| --- | --- |
+| Volledige `npm ci` (scripts actief; bestaande native headers) | GESLAAGD; 862 pakketten, backport toegepast |
+| `npm run lint` | GESLAAGD |
+| `npx next typegen` en `npm run typecheck` | Beide GESLAAGD |
+| Volledige `env NODE_ENV=test npm test -- --maxWorkers=4` | GESLAAGD; **155 bestanden, 764 tests geslaagd, 1 bestaande corpus-skip**, totaal 765 |
+| Vijf gerichte audit/checker/backport/installerbestanden, npm 11.9.0 én npm 10.9.9 | Beide GESLAAGD; **89 tests**, inclusief 17 echte audit-CLI-subprocessproeven; 0 skips |
+| `npm run build` | GESLAAGD; verse productie-/standalone-output |
+| `node scripts/check-standalone.mjs --browser` | GESLAAGD; 25 auth/CSRF-endpoints, accountscheiding, PDF/DOCX-export/herimport, storage/logout en koude restore |
+| Echte `npm run security:audit -- --all`, live OSV/registry + verse tijdelijke `npm ci --omit=dev` | **GESLAAGD met tijdelijke mitigatie**, 960 combinaties, 1 raw braces-finding, 1 tijdelijk gemitigeerd, 0 overige blokkerend; exit 0 |
+| Ongewijzigde `npm run security:audit` (productie-only) | GESLAAGD; 317 combinaties, 0 meldingen, geen uitzonderingspad |
+| Aanvullende native `npm audit --json` | **MISLUKT, exit 1**; 8 high pakket-/ketenmeldingen maar exact 1 unieke bronadvisory, dezelfde braces-GHSA; registry kent onze backport niet |
+| Echte Linux/systemd/cgroupacceptatie lokaal | **GEBLOKKEERD**; geen hostroot/systemd/schrijfbare cgroups, rootguard behouden |
+
+De 17 CLI-proeven starten daadwerkelijk `npm run security:audit -- --all`
+in begrensde subprocessen (15 seconden, 256 MiB JS-heap). De positieve proef
+controleert waarschuwing, vervaldatum, raw-/mitigatie-/blockingtelling en exit 0.
+Negatieve proeven controleren exit 1 voor ontbrekende/gewijzigde geïnstalleerde
+patch, gewijzigd manifest, andere versie, gewijzigde actuele keten, braces onder
+alias in productie/standalone, extra advisory, exacte deadline én latere datum,
+ongeldige upstreammetadata/ontbrekend introduced-event, nieuwe officiële release,
+onvolledige OSV-batch en productie-installatiefout. Tijdelijke productiebewijzen
+worden ook bij fouten verwijderd. Een afzonderlijke proef controleert het
+ongewijzigde productie-only pad. De bestaande 57 checkerproeven behouden alle
+verdere hash-/symlink-/keten-/upstream- en deadline-in-flight-scenario's.
+
+Alleen de testpreload onderschept metadata, klok en productie-installatie; de
+checker leest echte gepatchte fixturebytes en een echte `npm explain`-boom.
+Dit vervangt de hierboven uitgevoerde echte integratieproef niet. Er zijn geen
+vergelijkbare overrides in het actieve command toegevoegd. De eerste gerichte run
+had in de gewone sandbox spawnSync-EPERM; de normale goedkeuringsroute
+liet dezelfde ongewijzigde subprocesschecks slagen.
+
+Live upstreamhercontrole: OSV heeft nog exact de beoordeelde affected-structuur,
+geen fixed-event; npm latest blijft 3.0.3. Upstream PR #72 is open/niet gemerged
+op `28d440b5dd449dbf1fe6f3506cf94ecca4d02660`. Een nieuwe release of gewijzigd
+record blokkeert de mitigatie en vereist gericht vervangingsonderzoek.
+
+Compact activatiebewijs: `audit-evidence/2026-10-03/braces-exception-activation.json`.
+Lokale ruwe logs: `/workspace/.onboarding/braces-pr34-followup/activation-*`,
+buiten Git. Alle gegevens/mocks synthetisch; geen echte AI-, mail- of
+analyticsaanroepen. Definitieve geteste PR-head en de volledige GitHub-run
+(inclusief Linux-isolatie en acht browsercommando's) worden na de run hieronder
+en in PR #34 vastgelegd. Historische tellingen verderop gelden niet voor deze run.
 
 ## Actuele officiële bronnen
 
@@ -72,13 +136,13 @@ door callers worden afgehandeld; dit is geen garantie tegen alle CPU-/output-DoS
 `--ignore-scripts` past deze mitigatie niet toe en is ongeschikt. Onderhoud en
 verwijdering bij een officiële release staan in `patches/README.md`.
 
-**De OSV-audit blijft MISLUKT met één melding voor braces 3.0.3.** De backport
-is geen officiële gepatchte release. Auditcode, uitzonderingen en drempels
-blijven ongewijzigd. Alleen de bestaande volledige auditstap is verplaatst naar
+**Historisch vóór activatie: de OSV-audit bleef MISLUKT met één melding voor
+braces 3.0.3.** De backport is geen officiële gepatchte release. In die fase
+bleven auditcode, uitzonderingen en drempels ongewijzigd. Alleen de bestaande volledige auditstap is verplaatst naar
 het einde van de bestaande `quality`-job, na alle browsercommando's. Commando
 `npm run security:audit -- --all`, foutstatus, jobnaam en verplichte check zijn
 ongewijzigd; geen `continue-on-error`, extra voorwaarde of branchbeschermingswijziging.
-Quality blijft rood bij deze melding. Tijdelijk: patch met scripts installeren, CLI/config-globs
+Quality bleef vóór activatie rood bij deze melding. Tijdelijke maatregelen: patch met scripts installeren, CLI/config-globs
 alleen uit vertrouwde bronnen gebruiken, validatiefouten afhandelen en een
 officiële release afwachten. Geen onnodige devtools in productie installeren.
 
@@ -163,8 +227,8 @@ uitgevoerd zonder wijziging van rootguard of checks. Dit is geen operationele
 DigitalOcean-acceptatie.
 
 Rapportcommit `185b549b111ae512cdfa65d495cfb03c1785e67d` voegde alleen dit
-gemeten rapport/bewijs toe. Het latere voorstel voegt uitsluitend inactieve
-referentiecode en tests toe; de audit blijft blokkeren. De **definitieve
+gemeten rapport/bewijs toe. Het latere voorstel voegde inactieve
+referentiecode en tests toe; die historische audit bleef blokkeren. De **definitieve
 geteste PR-headcommit en herhaalde GitHub-run op die commit** worden in de
 [PR-beschrijving #34](https://github.com/tibodepauw/Leerkrachtentools/pull/34)
 na afronding vermeld; er wordt niet gestopt bij bewijs van een oudere head.
@@ -182,7 +246,7 @@ met 512 KiB stack, 64 MiB JS-heap en 3 seconden timeout. Fixtures zijn synthetis
 en worden opgeruimd. Drie extra installer-tests verifiëren reproduceerbaarheid,
 idempotentie, onbekende bronbytes vóór schrijven en een afwijkende pakketversie.
 
-| Exacte controle | Actuele uitkomst |
+| Exacte controle | Historische backportuitkomst |
 | --- | --- |
 | `env npm_config_nodedir=/workspace/.onboarding/node22/node_modules/node/node_modules/node-linux-x64 npm ci --no-audit --no-fund` | GESLAAGD; 862 pakketten, postinstall en overige lifecycle-scripts actief |
 | Wegwerpinstallatie `npm ci --omit=dev --no-audit --no-fund` | GESLAAGD; 180 seconden limiet, cleanup; geen braces/dev-consumers |

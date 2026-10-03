@@ -1,5 +1,6 @@
 {
-  "status": "proposal-not-active",
+  "status": "approved-active",
+  "activationApprovedProposalCommit": "e15d93d14f3320c3f317b6638a6b29e206e1771a",
   "package": "braces",
   "version": "3.0.3",
   "advisory": "GHSA-vfj7-8cjw-p6xm",

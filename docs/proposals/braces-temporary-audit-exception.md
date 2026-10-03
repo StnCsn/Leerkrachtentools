@@ -1,9 +1,14 @@
-# Voorstel: tijdelijke, gecontroleerde braces-audituitzondering
+# Goedgekeurde tijdelijke, gecontroleerde braces-audituitzondering
 
-**TER BEOORDELING — NIET ACTIEF.** Dit voorstel bij PR #34 verandert geen
-auditbeslissing. `npm run security:audit -- --all` blijft foutstatus 1 geven voor
-GHSA-vfj7-8cjw-p6xm. De bestaande `quality`-job, auditstap en branchbescherming
-blijven behouden. Geen merge of deployment.
+**GOEDGEKEURDE ACTIVATIE — ter laatste PR-beoordeling.** De gebruiker heeft op
+3 oktober 2026 afzonderlijk akkoord gegeven voor uitsluitend de vijf beschreven
+activatiewijzigingen van voorstelcommit
+`e15d93d14f3320c3f317b6638a6b29e206e1771a`. De checker is nu gekoppeld aan het
+actieve volledige auditcommando. Alle beoordeelde hash-, keten-, productie-,
+standalone- en upstreambindings en de vaste vervaldatum zijn behouden.
+De bestaande `quality`-job, laatste auditstap en branchbescherming zijn ongewijzigd.
+Geen merge of deployment. De onderstaande voorwaarden vormen de actieve policy;
+de eerdere voorsteltests/resultaten blijven historisch bewijs.
 
 Begin-/reviewcommit: `185b549b111ae512cdfa65d495cfb03c1785e67d` op
 `codex/fix-braces-advisory-2026-10-03`. Dit voorstel bouwt voort op de
@@ -13,7 +18,7 @@ Definitieve voorstelcommit en GitHub-uitkomst worden in PR #34 vermeld.
 
 ## Exacte scope en vervaldatum
 
-Alleen de combinatie **braces / 3.0.3 / GHSA-vfj7-8cjw-p6xm** mag na afzonderlijk
+Alleen de combinatie **braces / 3.0.3 / GHSA-vfj7-8cjw-p6xm** mag na het gegeven
 akkoord als *tijdelijk gemitigeerd* worden geclassificeerd, uitsluitend als alle
 onderstaande voorwaarden op de werkelijk geïnstalleerde bestanden slagen.
 Dit is geen officiële herstelrelease en geen generieke allowlist.
@@ -40,7 +45,7 @@ Alle ketens eindigen op de ene installatie `node_modules/braces`. Nieuwe roots,
 andere versies/specs/locaties, extra instanties of een productieclassificatie
 vereisen herbeoordeling en geven geen uitzondering.
 
-## Uitvoerbare, inactieve referentie
+## Actieve checker, uitsluitend volledige audit
 
 - `scripts/proposals/braces-exception-policy.json`: onafhankelijk vastgelegde
   SHA-256 van alle tien braces-bestanden, het bestaande patchmanifest, de tien
@@ -48,15 +53,21 @@ vereisen herbeoordeling en geven geen uitzondering.
   genormaliseerde actuele `npm explain braces --json`-boom; vaste vervaldatum.
 - `scripts/proposals/braces-audit-exception.mjs`: leest de werkelijke bestanden,
   voert verse lokale `npm explain` uit en toetst de voorwaarden. Export is
-  `assessBracesExceptionProposal`; er is geen CLI of activatievlag.
-- `scripts/braces-audit-exception-proposal.test.mjs`: synthetische wegwerpkopieën
+  `assessBracesException`; er is geen CLI of activatievlag.
+- `scripts/braces-audit-exception.test.mjs`: synthetische wegwerpkopieën
   van werkelijk geïnstalleerde packagebestanden; providers worden gemockt.
 
-De module wordt **niet** geïmporteerd door de actieve audit, package-scripts,
-postinstall, applicatie of workflow. Alleen de nieuwe tests gebruiken hem.
-Een positief resultaat bevat altijd `reviewOnly: true` en
-`wouldPassAfterSeparateApproval`, plus de zichtbare waarschuwing **NIET ACTIEF**.
-Het wijzigt geen proces-exitcode of actuele auditfinding.
+De actieve volledige audit importeert de checker. De historische mapnaam
+`scripts/proposals/` blijft behouden om de beoordeelde code en policy herkenbaar
+te houden. Status `approved-active` en `activationApprovedProposalCommit` leggen
+het afzonderlijke akkoord vast. Er is geen CLI-/env-activatieschakelaar.
+Alle raw findings worden eerst afgedrukt. Bij een targetfinding maakt
+`with-production-audit-install.mjs` een verse tijdelijke omitted-dev-installatie,
+controleert vervolgens de echte dev/build-installatie, verse productie-installatie,
+standalone en live upstreammetadata en verwijdert de productiemap in `finally`.
+Een guard-/installatie-/netwerkfout houdt exit 1. Alleen de exacte targettriple
+met alle geldige gates kan exit 0 geven; overige advisories blijven blokkerend.
+De productie-only audit heeft geen uitzonderingspad.
 
 ### Installatie- en ketenbewijs
 
@@ -87,7 +98,7 @@ groen te maken. Een wijziging is een afzonderlijke inhoudelijke herbeoordeling.
 
 ### Productie en standalone
 
-Voorgeschreven activatieflow: maak in dezelfde quality-job een nieuwe lege
+Geïmplementeerde activatieflow: maak in dezelfde quality-job een nieuwe lege
 wegwerpmap, kopieer package.json, package-lock.json en uitsluitend de bestaande
 postinstall-toepasser/patchdata; voer **volledige `npm ci --omit=dev` met scripts**
 uit. Gebruik een subprocess met 180 seconden limiet; verwijder de map in `finally`
@@ -116,8 +127,8 @@ runtimegebruik moet afzonderlijk worden onderzocht; niet blind de hashes vernieu
 De synthetische unitfixtures modelleren deze gate; zij installeren niet per test
 alle productiepakketten. Daarnaast is de checker werkelijk uitgevoerd met een
 verse `npm ci --omit=dev` (290 pakketten), de echte geïnstalleerde backport en de
-bestaande standalone met ongewijzigde appbron. Die proef slaagt. Bij latere
-activatie is de **verse job-build/installatie** verplicht, niet deze historische proef.
+bestaande standalone met ongewijzigde appbron. Die proef slaagt. Bij de actieve
+audit is de **verse job-build/installatie** verplicht, niet deze historische proef.
 
 ### Upstream en overige advisories
 
@@ -157,11 +168,11 @@ triple kan apart worden geteld; iedere andere advisory, versie of pakketnaam
 blijft blokkerend. Herhaalde meldingen mogen alleen voor diezelfde triple worden
 geclassificeerd en blijven zichtbaar; geen wildcard, CVE-aliasmatch of naamfilter.
 
-## Noodzakelijke wijzigingen uitsluitend ná afzonderlijk akkoord
+## Afzonderlijk goedgekeurde activatiewijzigingen
 
 1. Review de policy/referentie en wijzig de expliciete reviewstatus naar een
    beoordeelde status in een afzonderlijke codewijziging. Verwijder review-only
-   labeling dan pas. Geen env-flag of CLI-vlag die vandaag activatie mogelijk maakt.
+   labeling dan pas. Geen env-flag of CLI-vlag om de uitzondering te activeren.
 2. Voeg de hierboven beschreven tijdelijke productie-installatie/cleanup-helper
    toe aan de volledige auditflow, na de bestaande job-build/browserchecks.
    Laat de **bestaande auditstap als laatste staan**, met hetzelfde commando
@@ -183,10 +194,10 @@ geclassificeerd en blijven zichtbaar; geen wildcard, CVE-aliasmatch of naamfilte
    datum en onvolledige upstreammetadata geven exit 1. Geen verzwakking van huidige
    parser-/netwerk-/browser-/Linux-tests of branchbescherming.
 
-Deze vijf activatiewijzigingen zijn **niet toegepast**. Het huidige voorstel
-maakt uitsluitend de geschiktheidsvoorwaarden en negatieve tests reviewbaar.
+Deze vijf activatiewijzigingen zijn nu toegepast na expliciet akkoord voor
+`e15d93d`. De oorspronkelijke voorwaarden, pins en deadline zijn niet verruimd.
 
-Voorbeeld van beoogde uitvoer *na goedgekeurde activatie* (nu niet actief):
+Voorbeeld van uitvoer bij geldige actieve mitigatie:
 
 ```text
 OSV controleerde 960 productie- en buildpackages.
@@ -200,7 +211,7 @@ geen officiële herstelrelease; vervalt 2026-10-17T00:00:00.000Z.
 Een extra advisory maakt het laatste aantal 1 en exit 1. Bij afloop/guardfout
 blijft ook braces zelf blokkerend. De datum is niet automatisch verlengbaar.
 
-## Uitgevoerde voorsteltests
+## Historisch uitgevoerde voorsteltests
 
 | Scenario | Verwachte en gemeten uitkomst |
 | --- | --- |
@@ -223,5 +234,11 @@ blijft ook braces zelf blokkerend. De datum is niet automatisch verlengbaar.
 
 Node 22-wrapper: 57 voorsteltests + 9 bestaande backport/installertests +
 6 bestaande auditvalidatietests: **72 geslaagd, 0 mislukt, 0 overgeslagen**.
-Lint is geslaagd. De actuele actieve audit en volledige GitHub-uitkomst worden
-in PR #34 vermeld; er wordt geen groene audit of geactiveerde uitzondering geclaimd.
+Lint was geslaagd. Deze telling betreft de inactieve review op `e15d93d`.
+Actuele activatieproeven en GitHub-uitkomsten staan in het auditrapport en PR #34.
+De nieuwe CLI-tests draaien werkelijk `npm run security:audit -- --all` in
+subprocessen met 15 seconden timeout en 256 MiB JS-heap. Alleen hun preload
+onderschept OSV/registry, klok en de productie-installatie; `npm explain` leest
+de echte fixturebestanden. Zij verifiëren ook cleanup bij succes en fout. De
+actieve CLI heeft geen van deze testoverrides. De echte integratieproef gebruikt
+ongewijzigde netwerkmetadata en een werkelijke verse `npm ci --omit=dev`.

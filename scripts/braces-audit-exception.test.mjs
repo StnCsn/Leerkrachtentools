@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import { cpSync, mkdtempSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { assessBracesExceptionProposal } from "./proposals/braces-audit-exception.mjs";
+import { assessBracesException } from "./proposals/braces-audit-exception.mjs";
 
 const policy = JSON.parse(readFileSync(new URL("./proposals/braces-exception-policy.json", import.meta.url), "utf8"));
 const patch = JSON.parse(readFileSync("patches/braces-3.0.3-depth.json", "utf8"));
@@ -41,11 +41,11 @@ function fixture() {
   };
 }
 
-describe("INACTIVE braces exception proposal", () => {
-  it("checks real installed files/chains and reports a visible warning only as a review proposal", async () => {
-    const result = await assessBracesExceptionProposal(fixture());
-    expect(result).toMatchObject({ reviewOnly: true, wouldPassAfterSeparateApproval: true, blocking: [], temporarilyMitigated: [target] });
-    expect(result.warning).toContain("NIET ACTIEF");
+describe("approved braces exception gates", () => {
+  it("checks real installed files/chains and reports a visible warning for the approved temporary mitigation", async () => {
+    const result = await assessBracesException(fixture());
+    expect(result).toMatchObject({ passes: true, blocking: [], temporarilyMitigated: [target] });
+    expect(result.warning).not.toContain("NIET ACTIEF");
     expect(result.warning).toContain("TIJDELIJK GEMITIGEERD");
     expect(result.warning).toContain("2026-10-17T00:00:00.000Z");
     expect(result.warning).not.toContain("Geen bekende kwetsbaarheden");
@@ -59,20 +59,20 @@ describe("INACTIVE braces exception proposal", () => {
       for (const edit of [...file.edits].reverse()) content = content.replace(edit.after, () => edit.before);
       writeFileSync(filename, content);
     }
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Changed installed backport");
+    await expect(assessBracesException(options)).rejects.toThrow("Changed installed backport");
   });
 
   it.each(["lib/parse.js", "lib/stringify.js", "lib/utils.js", "index.js"])("rejects modified installed bytes: %s", async filename => {
     const options = fixture();
     const installed = path.join(options.root, "node_modules/braces", filename);
     writeFileSync(installed, readFileSync(installed, "utf8") + "\n// changed\n");
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Changed installed backport");
+    await expect(assessBracesException(options)).rejects.toThrow("Changed installed backport");
   });
 
   it("rejects a missing patch file", async () => {
     const options = fixture();
     rmSync(path.join(options.root, "node_modules/braces/lib/compile.js"));
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("missing braces file");
+    await expect(assessBracesException(options)).rejects.toThrow("missing braces file");
   });
 
   it("does not trust edits to the patch manifest", async () => {
@@ -80,14 +80,14 @@ describe("INACTIVE braces exception proposal", () => {
     const altered = structuredClone(patch);
     altered.files[0].patchedSha256 = "0".repeat(64);
     writeJson(path.join(options.root, "patches/braces-3.0.3-depth.json"), altered);
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Changed patch manifest");
+    await expect(assessBracesException(options)).rejects.toThrow("Changed patch manifest");
   });
 
   it("rejects a different installed version", async () => {
     const options = fixture();
     const filename = path.join(options.root, "node_modules/braces/package.json");
     writeJson(filename, { ...JSON.parse(readFileSync(filename, "utf8")), version: "3.0.4" });
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Unexpected braces version");
+    await expect(assessBracesException(options)).rejects.toThrow("Unexpected braces version");
   });
 
   it("rejects symlinked patched files", async () => {
@@ -95,13 +95,13 @@ describe("INACTIVE braces exception proposal", () => {
     const filename = path.join(options.root, "node_modules/braces/lib/parse.js");
     const copy = path.join(options.root, "copied-parse.js");
     cpSync(filename, copy); rmSync(filename); symlinkSync(copy, filename);
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Unexpected tree symlink");
+    await expect(assessBracesException(options)).rejects.toThrow("Unexpected tree symlink");
   });
 
   it("rejects another installed braces instance", async () => {
     const options = fixture();
     cpSync("node_modules/braces", path.join(options.root, "node_modules/shadcn/node_modules/braces"), { recursive: true });
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Unexpected or missing installed braces");
+    await expect(assessBracesException(options)).rejects.toThrow("Unexpected or missing installed braces");
   });
 
   it("detects a new actual dependent chain without relying on a saved explain artifact", async () => {
@@ -110,14 +110,14 @@ describe("INACTIVE braces exception proposal", () => {
     const project = JSON.parse(readFileSync(filename, "utf8"));
     project.devDependencies.micromatch = "4.0.8";
     writeJson(filename, project);
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Changed installed dependency chains");
+    await expect(assessBracesException(options)).rejects.toThrow("Changed installed dependency chains");
   });
 
   it("rejects changed installed consumer metadata", async () => {
     const options = fixture();
     const filename = path.join(options.root, "node_modules/fast-glob/package.json");
     writeFileSync(filename, readFileSync(filename, "utf8") + "\n");
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Changed installed chain package");
+    await expect(assessBracesException(options)).rejects.toThrow("Changed installed chain package");
   });
 
   it("rejects a chain reclassified as production in the lockfile", async () => {
@@ -126,7 +126,7 @@ describe("INACTIVE braces exception proposal", () => {
     const lock = JSON.parse(readFileSync(filename, "utf8"));
     delete lock.packages["node_modules/braces"].dev;
     writeJson(filename, lock);
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Changed dev/build lock chain");
+    await expect(assessBracesException(options)).rejects.toThrow("Changed dev/build lock chain");
   });
 
   it("still pins lockfile devOptional despite normalizing npm's computed output flag", async () => {
@@ -135,7 +135,7 @@ describe("INACTIVE braces exception proposal", () => {
     const lock = JSON.parse(readFileSync(filename, "utf8"));
     lock.packages["node_modules/braces"].devOptional = true;
     writeJson(filename, lock);
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Changed chain lock record");
+    await expect(assessBracesException(options)).rejects.toThrow("Changed chain lock record");
   });
 
   it("still rejects a new optional dependency edge in the actual tree", async () => {
@@ -144,7 +144,7 @@ describe("INACTIVE braces exception proposal", () => {
     const project = JSON.parse(readFileSync(filename, "utf8"));
     project.optionalDependencies = { micromatch: "4.0.8" };
     writeJson(filename, project);
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Changed installed dependency chains");
+    await expect(assessBracesException(options)).rejects.toThrow("Changed installed dependency chains");
   });
 
   it.each(["productionRoot", "standaloneRoot"])("rejects braces in %s, including an alias directory", async field => {
@@ -152,32 +152,32 @@ describe("INACTIVE braces exception proposal", () => {
     const directory = path.join(options[field], "node_modules/alias-package");
     mkdirSync(directory, { recursive: true });
     writeJson(path.join(directory, "package.json"), { name: "braces", version: "3.0.3" });
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow(field === "productionRoot" ? "Braces in production install" : "Braces in standalone output");
+    await expect(assessBracesException(options)).rejects.toThrow(field === "productionRoot" ? "Braces in production install" : "Braces in standalone output");
   });
 
   it("rejects braces references embedded in standalone code", async () => {
     const options = fixture();
     writeFileSync(path.join(options.standaloneRoot, "server.js"), 'require("braces");');
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Braces reference in production output");
+    await expect(assessBracesException(options)).rejects.toThrow("Braces reference in production output");
   });
 
   it("rejects stale standalone output", async () => {
     const options = fixture();
     writeFileSync(path.join(options.standaloneRoot, ".next/BUILD_ID"), "old-build");
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Missing or stale standalone build");
+    await expect(assessBracesException(options)).rejects.toThrow("Missing or stale standalone build");
   });
 
   it("inspects Next's internal standalone directory aliases without escaping the output", async () => {
     const options = fixture();
     mkdirSync(path.join(options.standaloneRoot, "node_modules/internal"), { recursive: true });
     symlinkSync("../node_modules/internal", path.join(options.standaloneRoot, ".next/alias"));
-    expect((await assessBracesExceptionProposal(options)).reviewOnly).toBe(true);
+    expect((await assessBracesException(options)).passes).toBe(true);
   });
 
   it("rejects a standalone directory alias outside the inspected output", async () => {
     const options = fixture();
     symlinkSync(options.root, path.join(options.standaloneRoot, ".next/outside"));
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Unexpected tree symlink");
+    await expect(assessBracesException(options)).rejects.toThrow("Unexpected tree symlink");
   });
 
   it.each([
@@ -187,15 +187,15 @@ describe("INACTIVE braces exception proposal", () => {
   ])("keeps every other advisory/package/version combination blocking: %j", async extra => {
     const options = fixture();
     options.vulnerabilities.push(extra);
-    const result = await assessBracesExceptionProposal(options);
-    expect(result.wouldPassAfterSeparateApproval).toBe(false);
+    const result = await assessBracesException(options);
+    expect(result.passes).toBe(false);
     expect(result.blocking).toEqual([extra]);
     expect(result.temporarilyMitigated).toEqual([target]);
   });
 
   it.each(["2026-10-17T00:00:00.000Z", "2026-10-18T00:00:00.000Z"])("expires without renewal at %s", async date => {
     const options = fixture(); options.clock = () => Date.parse(date);
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Proposal expired");
+    await expect(assessBracesException(options)).rejects.toThrow("Exception expired");
   });
 
   it("rejects a deadline crossed while upstream verification is in flight", async () => {
@@ -208,7 +208,7 @@ describe("INACTIVE braces exception proposal", () => {
       now = Date.parse("2026-10-17T00:00:00.000Z");
       return result;
     };
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Proposal expired");
+    await expect(assessBracesException(options)).rejects.toThrow("Exception expired");
   });
 
   it.each(["release", "fixed-advisory", "offline"])("requires targeted upstream review for %s", async change => {
@@ -219,7 +219,7 @@ describe("INACTIVE braces exception proposal", () => {
       if (change === "fixed-advisory" && data.affected) data.affected[0].ranges[0].events = [{ introduced: "0" }, { fixed: "3.0.4" }];
       return { ok: true, json: async () => data };
     };
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow(change === "release" ? "New upstream release" : change === "fixed-advisory" ? "Official fix announced" : "Synthetic metadata outage");
+    await expect(assessBracesException(options)).rejects.toThrow(change === "release" ? "New upstream release" : change === "fixed-advisory" ? "Official fix announced" : "Synthetic metadata outage");
   });
 
   it.each([
@@ -253,7 +253,7 @@ describe("INACTIVE braces exception proposal", () => {
     const changed = structuredClone(advisory);
     mutate(changed);
     options.fetchImpl = async url => ({ ok: true, json: async () => url.includes("api.osv.dev") ? changed : { name: "braces", version: "3.0.3" } });
-    await expect(assessBracesExceptionProposal(options)).rejects.toThrow(/targeted review required/);
+    await expect(assessBracesException(options)).rejects.toThrow(/targeted review required/);
   });
 
   it("ignores modification time and prose metadata without relaxing the affected binding", async () => {
@@ -263,6 +263,6 @@ describe("INACTIVE braces exception proposal", () => {
     unchanged.summary = "Updated advisory wording";
     unchanged.affected[0] = Object.fromEntries(Object.entries(unchanged.affected[0]).reverse());
     options.fetchImpl = async url => ({ ok: true, json: async () => url.includes("api.osv.dev") ? unchanged : { name: "braces", version: "3.0.3" } });
-    expect((await assessBracesExceptionProposal(options)).reviewOnly).toBe(true);
+    expect((await assessBracesException(options)).passes).toBe(true);
   });
 });
