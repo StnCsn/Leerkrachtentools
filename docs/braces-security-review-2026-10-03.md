@@ -5,6 +5,10 @@ Begincommit op opnieuw opgehaalde actuele `main`:
 Branch: `codex/fix-braces-advisory-2026-10-03`. Definitieve geteste commit en
 GitHub-CI-uitkomst staan in de PR. Geen merge of deployment.
 
+Aanvulling ter beoordeling: [tijdelijk audituitzonderingsvoorstel](proposals/braces-temporary-audit-exception.md).
+De referentie en negatieve tests zijn afzonderlijk toegevoegd; **de uitzondering
+is niet actief**. Het huidige auditcommando blijft deze GHSA blokkeren.
+
 ## Actuele officiële bronnen
 
 [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm) /
@@ -158,7 +162,9 @@ cgroups blijft **GEBLOKKEERD**; de GitHub-runner heeft deze acceptatie daadwerke
 uitgevoerd zonder wijziging van rootguard of checks. Dit is geen operationele
 DigitalOcean-acceptatie.
 
-De laatste commit voegt alleen dit gemeten rapport/bewijs toe. De **definitieve
+Rapportcommit `185b549b111ae512cdfa65d495cfb03c1785e67d` voegde alleen dit
+gemeten rapport/bewijs toe. Het latere voorstel voegt uitsluitend inactieve
+referentiecode en tests toe; de audit blijft blokkeren. De **definitieve
 geteste PR-headcommit en herhaalde GitHub-run op die commit** worden in de
 [PR-beschrijving #34](https://github.com/tibodepauw/Leerkrachtentools/pull/34)
 na afronding vermeld; er wordt niet gestopt bij bewijs van een oudere head.
