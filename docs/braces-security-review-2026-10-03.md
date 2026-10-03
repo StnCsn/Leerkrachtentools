@@ -126,8 +126,43 @@ upstreamfixtures uit, geen appproviders. Tijdslimiet 60 seconden, heap 256 MiB.
 De eerdere run [#241](https://github.com/tibodepauw/Leerkrachtentools/actions/runs/37133877418)
 op `8fb3938cf506626a8db729ece2ac2a42cf1648df` stopte na installatie bij de audit;
 de daaropvolgende controles waren **OVERGESLAGEN**, niet geslaagd.
-De nieuwe run en definitieve geteste commit worden na uitvoering vastgelegd in
-dit rapport en de PR. Er wordt geen volledig groene audit geclaimd.
+De nieuwe [run #242](https://github.com/tibodepauw/Leerkrachtentools/actions/runs/37135009667)
+op implementatiecommit `3761a6c132d4898e73a2b0659d9da3269e172b08` is volledig
+uitgevoerd. `quality` is **MISLUKT uitsluitend bij de laatste volledige audit**.
+Compact API-stapbewijs en logregels staan in
+`audit-evidence/2026-10-03/braces-ci-242.json`.
+
+| GitHub-stap / exact commando | Werkelijk resultaat #242 |
+| --- | --- |
+| Checkout / Setup Node.js | GESLAAGD |
+| Install dependencies: `npm ci` | GESLAAGD; gecontroleerde postinstall toegepast |
+| Generate Next.js route types: `npx next typegen` | GESLAAGD |
+| Lint: `npm run lint` | GESLAAGD |
+| Typecheck: `npm run typecheck` | GESLAAGD |
+| Test: `npm test`, `NODE_ENV=test` | GESLAAGD; 153 bestanden, 690 geslaagd, 1 corpusafhankelijke test OVERGESLAGEN |
+| Build: `npm run build` | GESLAAGD |
+| Standalone smoke test: `node scripts/check-standalone.mjs` | GESLAAGD |
+| Linux parser isolation and kernel limits: `sudo "$(command -v node)" scripts/check-linux-isolation.mjs` | GESLAAGD op GitHub-runner; denied host files/writes/network, CPU deadline, native OOM limit en standalone parsing |
+| Install browser: `npx playwright install --with-deps chromium firefox webkit` | GESLAAGD |
+| Browser: `node scripts/check-client-session.mjs` | GESLAAGD; Chromium |
+| Browser: `node scripts/check-analytics-privacy.mjs`, ook `PREVIEW_BROWSER=firefox` en `webkit` | Alle drie GESLAAGD; toestemming/weigering/intrekking en onderschept netwerk |
+| Browser: `node scripts/check-preview-security.mjs`, ook `PREVIEW_BROWSER=firefox` en `webkit` | Alle drie GESLAAGD; DOCX/CSS/resources/scripts/navigatie |
+| Browser: `node scripts/check-standalone.mjs --browser` | GESLAAGD; Chromium, twee tabbladen/accountwissel/storage denial |
+| Audit production and build dependencies: `npm run security:audit -- --all` | MISLUKT; 960 combinaties, exact GHSA-vfj7-8cjw-p6xm, exit 1 |
+| Post Setup Node.js | OVERGESLAGEN; action-cache-opslag na mislukte job, geen inhoudelijke controle |
+| Post Checkout / Complete job | GESLAAGD |
+
+Geen inhoudelijke quality-stap is overgeslagen. De bestaande corpus-skip is geen
+nieuw ingevoerde uitzondering. De lokale cloudbeperking voor hostroot/systemd/
+cgroups blijft **GEBLOKKEERD**; de GitHub-runner heeft deze acceptatie daadwerkelijk
+uitgevoerd zonder wijziging van rootguard of checks. Dit is geen operationele
+DigitalOcean-acceptatie.
+
+De laatste commit voegt alleen dit gemeten rapport/bewijs toe. De **definitieve
+geteste PR-headcommit en herhaalde GitHub-run op die commit** worden in de
+[PR-beschrijving #34](https://github.com/tibodepauw/Leerkrachtentools/pull/34)
+na afronding vermeld; er wordt niet gestopt bij bewijs van een oudere head.
+Er wordt geen volledig groene audit geclaimd.
 
 ## Lokaal testbewijs van de backport
 
