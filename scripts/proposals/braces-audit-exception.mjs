@@ -17,7 +17,12 @@ function canonical(value) {
 
 function normalized(value, root) {
   if (Array.isArray(value)) return value.map(item => normalized(item, root)).sort((a, b) => canonical(a) < canonical(b) ? -1 : canonical(a) > canonical(b) ? 1 : 0);
-  if (value && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, key === "location" && item === root ? "." : normalized(item, root)]));
+  if (value && typeof value === "object") {
+    // npm 10/11 disagree on this computed flag for the same actual tree.
+    // Lock-record flags and every edge type remain independently pinned.
+    if ("devOptional" in value) check(typeof value.devOptional === "boolean", "Invalid computed npm flag");
+    return Object.fromEntries(Object.entries(value).filter(([key]) => key !== "devOptional").map(([key, item]) => [key, key === "location" && item === root ? "." : normalized(item, root)]));
+  }
   return value;
 }
 

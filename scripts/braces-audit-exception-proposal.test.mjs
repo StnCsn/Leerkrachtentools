@@ -129,6 +129,24 @@ describe("INACTIVE braces exception proposal", () => {
     await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Changed dev/build lock chain");
   });
 
+  it("still pins lockfile devOptional despite normalizing npm's computed output flag", async () => {
+    const options = fixture();
+    const filename = path.join(options.root, "package-lock.json");
+    const lock = JSON.parse(readFileSync(filename, "utf8"));
+    lock.packages["node_modules/braces"].devOptional = true;
+    writeJson(filename, lock);
+    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Changed chain lock record");
+  });
+
+  it("still rejects a new optional dependency edge in the actual tree", async () => {
+    const options = fixture();
+    const filename = path.join(options.root, "package.json");
+    const project = JSON.parse(readFileSync(filename, "utf8"));
+    project.optionalDependencies = { micromatch: "4.0.8" };
+    writeJson(filename, project);
+    await expect(assessBracesExceptionProposal(options)).rejects.toThrow("Changed installed dependency chains");
+  });
+
   it.each(["productionRoot", "standaloneRoot"])("rejects braces in %s, including an alias directory", async field => {
     const options = fixture();
     const directory = path.join(options[field], "node_modules/alias-package");

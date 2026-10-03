@@ -4,7 +4,7 @@
   "expiresAt": "2026-10-17T00:00:00.000Z",
   "node": "22.23.3",
   "proposalTests": {
-    "passed": 29,
+    "passed": 31,
     "failed": 0,
     "skipped": 0
   },
@@ -44,5 +44,18 @@
     "scripts/apply-braces-security-patch.mjs": "40c1e170c3f9e554ed6c8443813f307bd93fae6ada5aeed8723ae4d3f6b4668a",
     "patches/braces-3.0.3-depth.json": "dabe6ac03c7b468c03175090d35fd0a051156ba7f3134051bf4a4b37ea1e4e86"
   },
-  "linuxLocal": "blocked: no hostroot/systemd/writable cgroups"
+  "linuxLocal": "blocked: no hostroot/systemd/writable cgroups",
+  "npmVariants": [
+    {
+      "version": "10.9.9",
+      "node": "22.23.3",
+      "regressionsPassed": 46
+    },
+    {
+      "version": "11.9.0",
+      "node": "22.23.3",
+      "regressionsPassed": 46
+    }
+  ],
+  "chainNormalization": "Only computed npm-explain devOptional is omitted; every lock flag and actual dependency edge remains bound."
 }

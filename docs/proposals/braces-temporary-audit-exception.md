@@ -70,9 +70,15 @@ of versie, of een extra/nested/aliased braces-installatie falen.
 De manifests van de ketenpakketten en hun lockrecords moeten hun gepinde hashes
 behouden. Daarna wordt **de huidige geïnstalleerde boom** via een begrensde
 `npm explain braces --json` gelezen: 10 seconden, maximaal 1 MiB uitvoer.
-De volledige boom inclusief edge-types/specs en flags wordt gecanonicaliseerd:
+De boom inclusief edge-types/specs en flags wordt gecanonicaliseerd:
 project-rootlocatie naar `.`, objectkeys gesorteerd, arrays recursief gesorteerd
-op hun canonieke JSON; locaties/versies worden niet weggefilterd. De resulterende
+op hun canonieke JSON; locaties/versies worden niet weggefilterd. Alleen npm's
+berekende uitvoerbit `devOptional` wordt uitgesloten: npm 10.9.9 retourneert voor
+dezelfde installatie `true` en npm 11.9.0 `false`. Die afwijking is lokaal met
+beide echte CLI-versies gereproduceerd; alle overige boomvelden zijn gelijk.
+`devOptional` en alle overige flags in de **lockrecords** blijven wel gepind,
+evenals dev/prod/optional/peer-edge-types in de actuele boom. Nieuwe optional
+edges en gewijzigde lockflags worden afzonderlijk negatief getest. De resulterende
 SHA-256 moet exact overeenkomen. Geen opgeslagen npm-explain-uitvoer als bewijs.
 Een gewijzigde tree/schema faalt gesloten, ook na een npm-toolingwijziging.
 
@@ -183,7 +189,7 @@ blijft ook braces zelf blokkerend. De datum is niet automatisch verlengbaar.
 | Gewijzigde parse/stringify/utils/index; ontbrekende compile | Afgewezen |
 | Gewijzigd manifest, andere versie, symlinked patchfile | Afgewezen |
 | Extra braces-instance, extra echte rootketen, gewijzigd consumer-manifest | Afgewezen |
-| Lockketen heringedeeld als productie | Afgewezen |
+| Lockketen heringedeeld als productie, andere lock devOptional-flag of nieuwe optional-edge | Afgewezen |
 | Braces-package onder alias in productie of standalone | Afgewezen |
 | Braces-reference in standalone / oude BUILD_ID / externe directorylink | Afgewezen |
 | Veilige interne Next-directoryalias | Volledig geïnspecteerd, aanvaard als reviewbewijs |
@@ -191,7 +197,7 @@ blijft ook braces zelf blokkerend. De datum is niet automatisch verlengbaar.
 | Eén milliseconde vóór / exact op / na vervaldatum, ook tijdens lopende requests | Voorstel mogelijk / afgewezen / afgewezen |
 | Nieuwe release, officieel fixed-event of metadata-uitval | Afgewezen, gerichte herbeoordeling vereist |
 
-Node 22-wrapper: 29 voorsteltests + 9 bestaande backport/installertests +
-6 bestaande auditvalidatietests: **44 geslaagd, 0 mislukt, 0 overgeslagen**.
+Node 22-wrapper: 31 voorsteltests + 9 bestaande backport/installertests +
+6 bestaande auditvalidatietests: **46 geslaagd, 0 mislukt, 0 overgeslagen**.
 Lint is geslaagd. De actuele actieve audit en volledige GitHub-uitkomst worden
 in PR #34 vermeld; er wordt geen groene audit of geactiveerde uitzondering geclaimd.

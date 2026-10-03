@@ -18,7 +18,7 @@
     "lib/utils.js": "b5a7596aa67730412b3c029ef09e84e6b67b8e445cffd35d1d295549c89066c7",
     "package.json": "56f08b888a4f30dc7cf8a7dbb36ffe92b737912ba36abe9d069d32167c957ac7"
   },
-  "chainsExplainSha256": "f9a03c0d2c6b8837a612446081ba43807da6da6fe037f4a462fe5ee97491d579",
+  "chainsExplainSha256": "a35beac94bd417a9d8c5c7c650dcf7519a1687c9b78ce96aacfdb1fef748c8e0",
   "chainPackages": {
     "node_modules/@next/eslint-plugin-next": {
       "version": "16.3.6",
