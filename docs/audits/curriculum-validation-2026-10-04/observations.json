@@ -1,0 +1,866 @@
+{
+  "beginCommit": "390e5a2cfd495127116f6ba91a9a1f810b7d1ff0",
+  "testedCodeCommit": "feef4bcfe2df917ca8714dd535849a1e47682a9c",
+  "configurationVersion": "d9e391dd-e7fa-4ce6-adc7-74d8fdb20b4a~cecfgver_6ac254cda774819d8e0f97043547aa45",
+  "revision": 7,
+  "policy": {
+    "mode": "unrestricted",
+    "state": "unknown",
+    "executorSnapshot": "unrestricted"
+  },
+  "storage": "/workspace/corpus-validation-2026-10-04",
+  "requests": [
+    {
+      "url": "https://pro.g-o.be/themas/leerplannen/basisonderwijs/nieuw-leerplan-basisonderwijs/",
+      "time": "2026-10-04T13:37:52.163094+00:00",
+      "timeBasis": "local timestamp when response body was saved",
+      "response": "200; exact headers retained outside Git",
+      "bytes": 149787,
+      "sha256": "fff1fb0cc0369992b7501b9e8de250404161f54c096b291cbf020ad557600c6a",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-nieuw.html"
+    },
+    {
+      "url": "https://g-o.be/robots.txt",
+      "time": "2026-10-04T13:38:48.183502+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-g-o.be",
+      "bytes": 226,
+      "sha256": "ac4183af471d7da67a7c52ef4d5fd3d51749164fb91bd1046dc4b89ab24322b1"
+    },
+    {
+      "url": "https://g-o.be/disclaimer/",
+      "time": "2026-10-04T13:38:48.964935+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-disclaimer.html",
+      "bytes": 25032,
+      "sha256": "2496710249b1970a0887c35cfef44ef1474e48848929839cc12f40eed034ecb2"
+    },
+    {
+      "url": "https://pro.g-o.be/robots.txt",
+      "time": "2026-10-04T13:38:49.591466+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-pro.g-o.be",
+      "bytes": 317,
+      "sha256": "6ba9de5b6dfb0fff3a1d3a296e1766e26feb680fe80feb0d28d98c25b23978fc"
+    },
+    {
+      "url": "https://pro.g-o.be/download/GOPRO-1830562155-29575",
+      "time": "2026-10-04T13:38:50.952494+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-1.xlsx",
+      "bytes": 290953,
+      "sha256": "427306c4e9ca0d9c38add50d7c920906d76068e57baec105363865c72f15f1fc"
+    },
+    {
+      "url": "https://pro.g-o.be/download/GOPRO-1830562155-29578",
+      "time": "2026-10-04T13:38:52.602942+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-2.xlsx",
+      "bytes": 537838,
+      "sha256": "662d08388bf2c3d58d2d52047023c8614126d1655a56b28540389cc13c662b59"
+    },
+    {
+      "url": "https://pro.g-o.be/download/GOPRO-1830562155-29577",
+      "time": "2026-10-04T13:38:54.182958+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-3.xlsx",
+      "bytes": 309202,
+      "sha256": "43e67805d68d7206b023b9e66fb06c66f9d842a8c0912b0ffee9702a1c52e617"
+    },
+    {
+      "url": "https://pro.g-o.be/download/GOPRO-1830562155-29579",
+      "time": "2026-10-04T13:38:56.058506+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-4.xlsx",
+      "bytes": 248188,
+      "sha256": "c77f4b968e41e36cfe4b254312e06cf3a38e976e5c2b715979e64b16d68e6402"
+    },
+    {
+      "url": "https://pro.g-o.be/download/GOPRO-1830562155-29580",
+      "time": "2026-10-04T13:38:57.766950+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-5.xlsx",
+      "bytes": 243167,
+      "sha256": "45ccd60f1cde98c07af5f2f31a4d1b7aa3a0d03ab1c524f471dae8535491bfb1"
+    },
+    {
+      "url": "https://pro.g-o.be/download/GOPRO-1830562155-29581",
+      "time": "2026-10-04T13:38:59.142971+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-6.xlsx",
+      "bytes": 215370,
+      "sha256": "f98dff210547625e7a305e0f9b41354cb3db1fa808c901360368cb7ce40c0ffe"
+    },
+    {
+      "url": "https://pro.g-o.be/download/GOPRO-1830562155-29582",
+      "time": "2026-10-04T13:39:00.652022+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-7.xlsx",
+      "bytes": 221283,
+      "sha256": "f3974dd0daa921095eb823d1d6eb2725028a65602bfab9aa62830611be092492"
+    },
+    {
+      "url": "https://pro.g-o.be/download/GOPRO-1830562155-29583",
+      "time": "2026-10-04T13:39:02.489660+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-8.xlsx",
+      "bytes": 213387,
+      "sha256": "bf3aa180a021000ed7eb10a2d036e6b2ba8dd2714de517460f3075ae8b22d2d9"
+    },
+    {
+      "url": "https://pro.g-o.be/download/GOPRO-1830562155-29584",
+      "time": "2026-10-04T13:39:04.141668+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-9.xlsx",
+      "bytes": 205476,
+      "sha256": "1736ecfb2d260f410d12e6a42cdda0438f4b1c00679d6bfcc7f573d0b66c92d1"
+    },
+    {
+      "url": "https://pro.g-o.be/download/GOPRO-1830562155-29574",
+      "time": "2026-10-04T13:39:05.141831+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-10.xlsx",
+      "bytes": 206246,
+      "sha256": "7b5da86696555bc1c5aec8b7df372f45ec28667bfab60ded583c1c98f44dc478"
+    },
+    {
+      "url": "https://pro.g-o.be/download/GOPRO-1830562155-29573",
+      "time": "2026-10-04T13:39:05.996158+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-11.xlsx",
+      "bytes": 195014,
+      "sha256": "0ae23e3c6c2239ea6b6875cef29e61039c253d7c8ebfa1b67750d0e4c7ca16ba"
+    },
+    {
+      "url": "https://pro.g-o.be/download/GOPRO-1830562155-29576",
+      "time": "2026-10-04T13:39:07.452652+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-12.xlsx",
+      "bytes": 207802,
+      "sha256": "1795690bd770a6ec5c66854c25cd646619a1da2c081d7c36f8f5d07036086a27"
+    },
+    {
+      "url": "https://pro.g-o.be/robots.txt",
+      "time": "2026-10-04T13:39:47.304319+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-pro.g-o.be",
+      "bytes": 317,
+      "sha256": "6ba9de5b6dfb0fff3a1d3a296e1766e26feb680fe80feb0d28d98c25b23978fc"
+    },
+    {
+      "url": "https://pro.g-o.be/themas/leerplannen/basisonderwijs/nederlands/",
+      "time": "2026-10-04T13:39:48.208694+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-oud.html",
+      "bytes": 107823,
+      "sha256": "7050f88ae3d1fd47ef41a55f8339defbf3303394b86dcd79e63d6f9d0543dc30"
+    },
+    {
+      "url": "https://pro.g-o.be/download/GOPRO-1830562155-2575",
+      "time": "2026-10-04T13:39:49.800206+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-oud.pdf",
+      "bytes": 2081590,
+      "sha256": "6425b69ad150fe8aa953350bb63325974540add848d77d45edea4931f5425bc4"
+    },
+    {
+      "url": "https://pro.g-o.be/themas/leerplannen/eerste-graad-secundair-onderwijs/a-stroom/",
+      "time": "2026-10-04T13:39:50.560664+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-secundair.html",
+      "bytes": 60682,
+      "sha256": "9094138a44b163eea7ab295ae45b6a0a5275c81cd2ecb1ad2f0bd428f3069b9b"
+    },
+    {
+      "url": "https://pro.g-o.be/download/GOPRO-1830562155-27333",
+      "time": "2026-10-04T13:39:51.406250+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/go-secundair.pdf",
+      "bytes": 805318,
+      "sha256": "754c2809f583e6dfd4cef2e410e0ad3730971767f79babd243038449489ca1e1"
+    },
+    {
+      "url": "https://www.ovsg.be/robots.txt",
+      "time": "2026-10-04T13:39:52.578676+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-www.ovsg.be",
+      "bytes": 274,
+      "sha256": "00fbe654527d6eb2b81a62669280f35479108819409b3aef861638002924cb9a"
+    },
+    {
+      "url": "https://www.ovsg.be/onze-themas/leerplannen-didactiek/basisonderwijs/leer-lokaal/leergebieden-leerlijnen-leerlokaal",
+      "time": "2026-10-04T13:39:54.613788+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/ovsg.html",
+      "bytes": 107816,
+      "sha256": "854c4e46ffaf0b3cc01469e476eb7a25c4a5e66703d6862a27a48fd698524ffc"
+    },
+    {
+      "url": "https://pro.katholiekonderwijs.vlaanderen/robots.txt",
+      "time": "2026-10-04T13:39:55.692582+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-pro.katholiekonderwijs.vlaanderen",
+      "bytes": 145,
+      "sha256": "113cad321e9fbc0d12ea6fb86b39b3085ae0abc00f5fa339f5dddc1f959c1ca5"
+    },
+    {
+      "url": "https://pro.katholiekonderwijs.vlaanderen/achtergrond-bij-ontwikkelvelden/het-ordeningskader",
+      "time": "2026-10-04T13:39:58.056585+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/zill-hub.html",
+      "bytes": 665740,
+      "sha256": "be6299b2ee75a397767a5e620d40e8c5fe05978abc95c121abe9bb68ca3eeea0"
+    },
+    {
+      "url": "https://opstap.katholiekonderwijs.vlaanderen/robots.txt",
+      "time": "2026-10-04T13:39:58.853271+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-opstap.katholiekonderwijs.vlaanderen",
+      "bytes": 164,
+      "sha256": "d794b456814ec567564a9c7ae815c9eb624ebd66123032521fd21d4f694357ee"
+    },
+    {
+      "url": "https://opstap.katholiekonderwijs.vlaanderen/",
+      "time": "2026-10-04T13:39:59.475059+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/opstap.html",
+      "bytes": 2885,
+      "sha256": "4317c1333bf01b547391461f41c4c55412b4aa308d42e5bd93a83c31ca19337e"
+    },
+    {
+      "url": "https://zill-selector.katholiekonderwijs.vlaanderen/robots.txt",
+      "time": "2026-10-04T13:40:00.589485+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-zill-selector.katholiekonderwijs.vlaanderen",
+      "bytes": 6152,
+      "sha256": "4b44ed7654d0066c8b9c785b6275b5b85bcbba76f88e9d590475d9ce491032ab"
+    },
+    {
+      "url": "https://zill-selector.katholiekonderwijs.vlaanderen/",
+      "time": "2026-10-04T13:40:01.102736+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/zill-selector.html",
+      "bytes": 6152,
+      "sha256": "4b44ed7654d0066c8b9c785b6275b5b85bcbba76f88e9d590475d9ce491032ab"
+    },
+    {
+      "url": "https://www.onderwijsdoelen.be/robots.txt",
+      "time": "2026-10-04T13:40:02.477034+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-www.onderwijsdoelen.be",
+      "bytes": 174,
+      "sha256": "51f4f1e6cc128c4ffb517035940b69960cfeb71d7515f02be9b70c9f086ff3b3"
+    },
+    {
+      "url": "https://www.onderwijsdoelen.be/",
+      "time": "2026-10-04T13:40:03.486032+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/onderwijsdoelen.html",
+      "bytes": 2789,
+      "sha256": "d6a6c35c59ddac92533323ba7340acb0ffd2a0bd1c605d63ca018e752764b0ba"
+    },
+    {
+      "url": "https://pov.classid.io/robots.txt",
+      "time": "2026-10-04T13:40:04.553976+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-pov.classid.io",
+      "bytes": 1248,
+      "sha256": "8fa3036c68bfcbd32365f6225d24333264093b7cd38d306e106b4dbdc934fd5b"
+    },
+    {
+      "url": "https://pov.classid.io/website/sapo-endpoints",
+      "time": "2026-10-04T13:40:05.476255+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/pov-docs.html",
+      "bytes": 31104,
+      "sha256": "0e1932a31cab14f409c11c99d725ee2592f39e6fab4dd9fedf32e40d92539918"
+    },
+    {
+      "url": "https://pro.katholiekonderwijs.vlaanderen/vakken-en-leerplannen?tab=eerstegraad",
+      "time": "2026-10-04T13:40:07.269660+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/kov-secundair.html",
+      "bytes": 621894,
+      "sha256": "fd1567c5b371a6f25f6cfd9388b76aa1562c3cb1ce425cb65159e5ed2f97ee28"
+    },
+    {
+      "url": "https://www.ovsg.be/volumes/general/Leerplannen-en-didactiek/Lager-onderwijs/260130-Visie-Nederlands.pdf",
+      "time": "2026-10-04T13:40:08.889079+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/ovsg-visie.pdf",
+      "bytes": 325646,
+      "sha256": "57ebb55d0a5f135301b5fc405b7e13b9c2308b90dd8f7d975b46cd75b2c68136"
+    },
+    {
+      "url": "https://assets.vlaanderen.be/robots.txt",
+      "time": "2026-10-04T13:40:11.543856+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-assets.vlaanderen.be",
+      "bytes": 25,
+      "sha256": "efdb5938a9736727f5cce2b60355588e4fa541d19d022d222d8a09b8efd5dcce"
+    },
+    {
+      "url": "https://cached-api.katholiekonderwijs.vlaanderen/robots.txt",
+      "time": "2026-10-04T13:41:46.128963+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-cached-api.katholiekonderwijs.vlaanderen",
+      "bytes": 26,
+      "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1"
+    },
+    {
+      "url": "https://cached-api.katholiekonderwijs.vlaanderen/documents/bdc19260-bd4c-46a8-8009-b2a54f381120/snapshots/1.2/krcItems",
+      "status": "robots-disallowed"
+    },
+    {
+      "url": "https://zill-selector.katholiekonderwijs.vlaanderen/robots.txt",
+      "time": "2026-10-04T13:41:46.757757+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-zill-selector.katholiekonderwijs.vlaanderen",
+      "bytes": 6152,
+      "sha256": "4b44ed7654d0066c8b9c785b6275b5b85bcbba76f88e9d590475d9ce491032ab"
+    },
+    {
+      "url": "https://zill-selector.katholiekonderwijs.vlaanderen/dist/bundle.js?v=zill-selector__f3e57d8__2025-01-13T06:50:59.331Z",
+      "time": "2026-10-04T13:41:47.840823+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/zill-bundle.js",
+      "bytes": 4046747,
+      "sha256": "8c50f79848f2d13b7a2da43039912bd7800e51f4f17c4929ba16f5cc853c751b"
+    },
+    {
+      "url": "https://www.onderwijsdoelen.be/robots.txt",
+      "time": "2026-10-04T13:41:48.839822+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-www.onderwijsdoelen.be",
+      "bytes": 174,
+      "sha256": "51f4f1e6cc128c4ffb517035940b69960cfeb71d7515f02be9b70c9f086ff3b3"
+    },
+    {
+      "url": "https://www.onderwijsdoelen.be/env.js?v=2026-08-28%2012:06",
+      "time": "2026-10-04T13:41:49.998261+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/onderwijs-env.js",
+      "bytes": 907,
+      "sha256": "3c7d5bb61f8883a3c4737c8b3589306f69f0d6d9a530a9f7082ee50c8a744f46"
+    },
+    {
+      "url": "https://www.onderwijsdoelen.be/main-3ZBMVRFY.js",
+      "time": "2026-10-04T13:41:51.121187+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/onderwijs-main.js",
+      "bytes": 40587,
+      "sha256": "6c719dac5bda66b93ef22abad731f03bfb8f9dde3671f1e12cd2ce95769be550"
+    },
+    {
+      "url": "https://pro.katholiekonderwijs.vlaanderen/robots.txt",
+      "time": "2026-10-04T13:44:21.689669+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-pro.katholiekonderwijs.vlaanderen",
+      "bytes": 145,
+      "sha256": "113cad321e9fbc0d12ea6fb86b39b3085ae0abc00f5fa339f5dddc1f959c1ca5"
+    },
+    {
+      "url": "https://pro.katholiekonderwijs.vlaanderen/download/content/945c4ead-f3b1-44ff-a225-70805f09eb69/attachments/2017-10-03%20Generieke%20doelen%20%20definitief%20na%20goedkeuring.pdf",
+      "time": "2026-10-04T13:44:24.733169+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/zill-generieke.pdf",
+      "bytes": 673726,
+      "sha256": "01c1bb31793f2efa35b1c60a3b11ca5f3e24fd3781de8f276969b72231778fce"
+    },
+    {
+      "url": "https://www.ovsg.be/robots.txt",
+      "time": "2026-10-04T13:44:26.462372+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/robots-www.ovsg.be",
+      "bytes": 274,
+      "sha256": "00fbe654527d6eb2b81a62669280f35479108819409b3aef861638002924cb9a"
+    },
+    {
+      "url": "https://www.ovsg.be/volumes/general/Leerplannen-en-didactiek/Lager-onderwijs/260901-Visie-Nederlands.pdf?v=1788248640",
+      "time": "2026-10-04T13:44:28.534646+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/ovsg-visie-current.pdf",
+      "bytes": 412350,
+      "sha256": "8a3436b72667531e1c870c76d8a2173244e2a1ed91c32c0b5012ceabea2c0344"
+    },
+    {
+      "url": "https://www.ovsg.be/privacyverklaring",
+      "time": "2026-10-04T13:44:30.661456+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/ovsg-terms.html",
+      "bytes": 94233,
+      "sha256": "bd35a507c4cf717310a17e57989f074eea632a1e5bd5996e28b4103657d8ae5f"
+    },
+    {
+      "url": "https://pro.katholiekonderwijs.vlaanderen/pro-privacy",
+      "time": "2026-10-04T13:44:33.599086+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/kov-terms.html",
+      "bytes": 629324,
+      "sha256": "cd49f99205a7bff8629f863b4060f456e75f398b8fd9a87b41e2d29d864cefba"
+    },
+    {
+      "url": "https://pro.katholiekonderwijs.vlaanderen/I-Ned-a/leerplan",
+      "time": "2026-10-04T13:44:35.396398+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/kov-subject.html",
+      "bytes": 653096,
+      "sha256": "45da69c95cf29e48a5c456b69cbfcc2783f905dc3ac63cae96b84f2d11e3b1d2"
+    },
+    {
+      "url": "https://pro.katholiekonderwijs.vlaanderen/download/content/1dd4676b-a678-4fe3-b70a-bfbc80bac7d3/attachments/I-Ned-a_oktober_24_-_november_25.docx",
+      "time": "2026-10-04T13:44:37.242552+00:00",
+      "exit": 0,
+      "response": "200 200 ",
+      "error": "",
+      "path": "/workspace/corpus-validation-2026-10-04/raw/kov-plan.docx",
+      "bytes": 344839,
+      "sha256": "5a78a3048bd93c9fddc384698f4834ba20330e8c752e0c2c7753589f18029b2e"
+    }
+  ],
+  "corpora": [
+    {
+      "path": "secundair/leerplannen_secundair.jsonl",
+      "records": 381,
+      "sha256": "0e52ebb443a29cc6e4ac88b971c61a43573174dcd609ba6205855ee23cfd1c37"
+    },
+    {
+      "path": "go_nieuw/go_nieuw_volledig.jsonl",
+      "records": 3490,
+      "sha256": "fa481496da9747eedb8c6e3cc310d02da3fdf7696921f94a6a18fa58051fcb0e"
+    }
+  ],
+  "privateEvidence": [
+    {
+      "file": "analytics-browser.log",
+      "sha256": "47d36751b9f5af013ef20c95f7f978813b378037722e74d6e5bd0625295fd630"
+    },
+    {
+      "file": "audit-proxy.log",
+      "sha256": "6ef1d65eb9b8e9a0ae6ef0e00f14e7e7acd7ab4c56f77311345b0f266e6afeae"
+    },
+    {
+      "file": "audit.log",
+      "sha256": "bc1822059e2eee72f2f0e6b840a93e7499803da1dd0225761d466fb5f6e18cc6"
+    },
+    {
+      "file": "browser-install.log",
+      "sha256": "67428a5c1241239453cfd3b7f8848e5394397c3516682cd9c7fb279eaf897373"
+    },
+    {
+      "file": "build.log",
+      "sha256": "a3cf75b0fa9f527dfbb2cc7b77b4bc5502647900f660be9fb16842cdd946ee4a"
+    },
+    {
+      "file": "check-available-corpora.log",
+      "sha256": "394ede2993bf694e9abaed93056a7d167636f708f4e8f9d647f17e5ea5014888"
+    },
+    {
+      "file": "check-corpora-final.log",
+      "sha256": "854d411267c6d046bab3a741734ad086553c59ad09ed675fc939c741b623007a"
+    },
+    {
+      "file": "check-corpora.log",
+      "sha256": "3028c2ecc74af2a3daf6358b65b6a412a3ce90e3086ad6c9407420ef835c5e46"
+    },
+    {
+      "file": "check-status.txt",
+      "sha256": "a085a06f91e7c25a60bb239d3db1ad30440159475a2ebcf9e798f17372d1decc"
+    },
+    {
+      "file": "client-browser.log",
+      "sha256": "ed6134b1e85653610afa857f5e30f041e8f11aab7d7ac4e5af80d02254af6f94"
+    },
+    {
+      "file": "extra-docs.log",
+      "sha256": "0039fb3c95faa8807744ba543faf50e6c32347ce50515712037c7722fc1623bf"
+    },
+    {
+      "file": "go-fetch.log",
+      "sha256": "3d9d650c20385bacec082bc9b04b2e60219128209fd03f0701e14c6db8a05b3c"
+    },
+    {
+      "file": "go-links.json",
+      "sha256": "492943592c5968f37b594a59ccbd206e2b807c1f70c26940160ae30a9c50602b"
+    },
+    {
+      "file": "go-robots.body",
+      "sha256": "6ba9de5b6dfb0fff3a1d3a296e1766e26feb680fe80feb0d28d98c25b23978fc"
+    },
+    {
+      "file": "go-robots.headers",
+      "sha256": "9b2955e7fee9a87a4b95c8e6a921be4f514e6c2931516264c58dc9e518a212de"
+    },
+    {
+      "file": "go-robots.stderr",
+      "sha256": "55282911559281b417086c02bace3be5f4d0755d257664c03b3ea4c27b1144e3"
+    },
+    {
+      "file": "go-stats.json",
+      "sha256": "ac27a746481c5f4581be3a9d5e80308827b0369f7d0bb5a58aeb0d5034637c4d"
+    },
+    {
+      "file": "go-validation.json",
+      "sha256": "3e69752ede3412f7d95526d14e66653cabba8fd199ae07c9cfde88037e2e76eb"
+    },
+    {
+      "file": "host-probes.json",
+      "sha256": "d1cf82728551b2ddf608ad407c5e20df7340cea4bd0392090a93c82118cf9ce6"
+    },
+    {
+      "file": "host-probes.log",
+      "sha256": "d1cf82728551b2ddf608ad407c5e20df7340cea4bd0392090a93c82118cf9ce6"
+    },
+    {
+      "file": "http-probe.log",
+      "sha256": "d241addcf18d17bcdb3e229695d908338015d7b0d0ab1e4a178df6d4c4fac6c5"
+    },
+    {
+      "file": "http-results.json",
+      "sha256": "122094ed8cc8347328abf1f87538070f90f2b31620b705a8ca3aef8d6324bcc2"
+    },
+    {
+      "file": "http-server.log",
+      "sha256": "df60e89e75125bedcd87fe22ef2a6be70b9455798202ee1e00a69109e723025c"
+    },
+    {
+      "file": "invalid-source.json",
+      "sha256": "cfd506433a3cee429ce2c6d9ad32ad94bb590a7da08855e51540fc043a087a18"
+    },
+    {
+      "file": "kov-docs.json",
+      "sha256": "26d10023b27de3723a822f08ed5e6b2459a5255195ee4937a700d2408fa760d0"
+    },
+    {
+      "file": "kov-final.log",
+      "sha256": "d6a43509ac2aa4f8040127cbb166f9a5fe57c8029d745423705666dd50b94b34"
+    },
+    {
+      "file": "kov-validation.json",
+      "sha256": "f52cffef1487223759427b28b6853baf3667e871ca2093a3267dc09933d355cc"
+    },
+    {
+      "file": "links-go-oud.json",
+      "sha256": "0d9deee47b0541be48a1a1dc6b49131ae933fe582f57603ad9d34d2df1b697b2"
+    },
+    {
+      "file": "links-go-secundair.json",
+      "sha256": "3a6692a305ea7fb7651f5a67d9def574bb8f6803c1158bf763d486ea502695d8"
+    },
+    {
+      "file": "links-kov-secundair.json",
+      "sha256": "ab09c95a30593f88874bab0aff50455f69ce8480562b627fca321c2baca7ade6"
+    },
+    {
+      "file": "links-onderwijsdoelen.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "file": "links-opstap.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "file": "links-ovsg.json",
+      "sha256": "808783b15b08bcfdd7afc00b457a64a4b095c34c9ce0721bbd71f4d59bf82096"
+    },
+    {
+      "file": "links-pov-docs.json",
+      "sha256": "eed1ba793896b92db3a18e2c0152998ed10a6f8881f64a0482b8563b320e5f2a"
+    },
+    {
+      "file": "links-zill-hub.json",
+      "sha256": "fe1dde52cacfe06efe67a77b35a584bc3b1078eefb8ab470a718a7b1d1d55f7a"
+    },
+    {
+      "file": "links-zill-selector.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "file": "lint.log",
+      "sha256": "269f1dd6ce0beb0c634631bac8a0b7b6bc7c033cfcc0c0271552f4f46e6f92a2"
+    },
+    {
+      "file": "linux-isolation.log",
+      "sha256": "d82ee607f5f14f8c21220425570b9d849ad2f651988bd39946a4663d87310bd2"
+    },
+    {
+      "file": "loader-final.log",
+      "sha256": "b81691023458684c906852a4d549c074825fcabac04b7f4990b5f7a31a1b906a"
+    },
+    {
+      "file": "loader-results.json",
+      "sha256": "c05a5221e8bca4d75a2a1201d2d329649d58c8c4229209fa1acbfc48cce7307c"
+    },
+    {
+      "file": "manifest.json",
+      "sha256": "fbcf846d12e284037fade19c87aee24bd2c9c442c6d0decce9a45fae01f2d9dc"
+    },
+    {
+      "file": "more-sources.log",
+      "sha256": "5c6e6b3f7317f97a185b21b2c36a8b848e38a2aacff4ce096397fc8777e532b6"
+    },
+    {
+      "file": "node-tests.log",
+      "sha256": "98234f04a70dca7368a4de31b84113e45601558ee3054a9b9d8a40022e193e4e"
+    },
+    {
+      "file": "node22-install.log",
+      "sha256": "5ed910b65336e2d1c7e670f181f4fff81212d5c2290cb466f638aee94cadd17e"
+    },
+    {
+      "file": "npm-ci-retry.log",
+      "sha256": "b3f177acfdd92541ba276057bfede7095bf5468e7d8c7ed1c130d806129b5cdf"
+    },
+    {
+      "file": "npm-ci.log",
+      "sha256": "b7cfc489d93ec86ecfb8154001fae31cde67a4e1d346678f8f4b228864f9fca9"
+    },
+    {
+      "file": "pdf-after.log",
+      "sha256": "c4daf68701446c98a200e94c210ffe72ba5fea758917a4760aff3995542e6dd6"
+    },
+    {
+      "file": "pdf-final.log",
+      "sha256": "c4daf68701446c98a200e94c210ffe72ba5fea758917a4760aff3995542e6dd6"
+    },
+    {
+      "file": "pdf-validation.json",
+      "sha256": "697a6b1037eb4d6f41b24b39e4147e3351944376455f3e1b0c61b853cf0997ff"
+    },
+    {
+      "file": "pip-freeze.txt",
+      "sha256": "dd8892ba384d5a13c5ab91b4844cf9b0f9229ae76dc2d8e5d8f06f090835aeb7"
+    },
+    {
+      "file": "pip-install.log",
+      "sha256": "80f4d36f9d1094536b40c9e59d2685b9f8e538c74d159c20b927b653a2f6db88"
+    },
+    {
+      "file": "preview-browser.log",
+      "sha256": "a9a257d1056f12f027c9f1b32c33de486229f5ca0ae0a00f83c3e0b053ec84d3"
+    },
+    {
+      "file": "provenance-before.log",
+      "sha256": "60030f202aa0a866453e31c27a8cd864ad473a599f2de1eb2ecd63315af32890"
+    },
+    {
+      "file": "public-apis.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "python-commit.log",
+      "sha256": "c0dd18bce1b66c44ad8d8f3e4137b8645ac0e56bc896dcf59717e5c67eb1af75"
+    },
+    {
+      "file": "python-final.log",
+      "sha256": "534fbd6631ce726d03df440dbb788b76c5043b01557807babd503a0c829ec975"
+    },
+    {
+      "file": "python-tests-after.log",
+      "sha256": "fdaaf679188246a10c017c775d78f7090114e3a923820196278902d6bbb699bf"
+    },
+    {
+      "file": "python-tests.log",
+      "sha256": "4ba1c009597628376703c75aa21cd046778a2a0576a7ae2ad4af3b6fd6d605df"
+    },
+    {
+      "file": "regressions-before.log",
+      "sha256": "cc55e98830a71d9c3c5f78aab980d66604b2f56d9f1dc8ad7e27f735d2103f55"
+    },
+    {
+      "file": "routes-probe.log",
+      "sha256": "748ba8d12fe8a406396cfe089299ecd074342a20e02c8736ed5c4d2bd3569242"
+    },
+    {
+      "file": "routes-results.json",
+      "sha256": "35fcaf608256a194793c6930808f8652c9dcde98fa7c3a5312d4bca40d66317f"
+    },
+    {
+      "file": "singular-before.log",
+      "sha256": "da3f482b18dc8f195e1d6275e5cf39e5fe314ecfede910a98864e9df78cfb209"
+    },
+    {
+      "file": "standalone-browser.log",
+      "sha256": "9aab74292289493dc6f8da7008856146c0d12d8b18028ec975ac4c8cafc3eebe"
+    },
+    {
+      "file": "standalone.log",
+      "sha256": "357a6b6e0118cedd2c36c157f3462c2ca8ea1a4ff6446faf7fb52962b7bca954"
+    },
+    {
+      "file": "typecheck.log",
+      "sha256": "e5031d6dc830039bf05939c2794e8c9adcfff437f1dc604f35ebfb6d3d8a390c"
+    },
+    {
+      "file": "typegen.log",
+      "sha256": "fca4ca86a8bf9a203e4c59cb1412177ec5cda216926a7aab57486a10d4292ada"
+    }
+  ],
+  "goCounts": [
+    {
+      "discipline": "Nederlands",
+      "rows": 622,
+      "parsed": 622
+    },
+    {
+      "discipline": "wiskunde",
+      "rows": 998,
+      "parsed": 998
+    },
+    {
+      "discipline": "wetenschap en techniek",
+      "rows": 528,
+      "parsed": 528
+    },
+    {
+      "discipline": "geschiedenis",
+      "rows": 244,
+      "parsed": 244
+    },
+    {
+      "discipline": "aardrijkskunde",
+      "rows": 276,
+      "parsed": 276
+    },
+    {
+      "discipline": "burgerschap",
+      "rows": 148,
+      "parsed": 148
+    },
+    {
+      "discipline": "muzische vorming",
+      "rows": 98,
+      "parsed": 98
+    },
+    {
+      "discipline": "lichamelijke opvoeding",
+      "rows": 189,
+      "parsed": 189
+    },
+    {
+      "discipline": "Frans",
+      "rows": 112,
+      "parsed": 112
+    },
+    {
+      "discipline": "ICT",
+      "rows": 93,
+      "parsed": 93
+    },
+    {
+      "discipline": "sociale vaardigheden",
+      "rows": 68,
+      "parsed": 68
+    },
+    {
+      "discipline": "leren leren",
+      "rows": 114,
+      "parsed": 114
+    }
+  ],
+  "sourceVersions": {
+    "GO_NIEUW": "not established; published Excel set; provisional approval status in live hub",
+    "GO_OUD": "2013/1; 2013/885/1",
+    "GO_SECONDARY": "2024/1A/BAS; 2024-06-06",
+    "KOV_SECONDARY": "I-Ned-a oktober 24 - november 25",
+    "OVSG_JANUARY": "2026-01-31",
+    "OVSG_CURRENT": "2026-09-01",
+    "ZILL_GENERIC": "2017-10-03 filename; approved title; current completeness not established"
+  }
+}

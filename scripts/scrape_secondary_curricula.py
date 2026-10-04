@@ -79,7 +79,7 @@ GOAL_CODE_RE = re.compile(
 )
 MINIMUM_CODE_RE = re.compile(r"(?m)^\s*(?:MD\s*)?(\d{2}\.\d{2}(?:\.\d+)?)\s*$")
 LEARNER_SENTENCE_RE = re.compile(
-    r"(De (?:leerling|leerlingen)en?\b[\s\S]{15,900}?[.!?])"
+    r"(De (?:leerling|leerlingen)\b[\s\S]{15,900}?[.!?])"
 )
 
 logger = logging.getLogger("scrape_secondary_curricula")
@@ -178,8 +178,12 @@ class GoalRecord:
     sleutelcompetentie_nr: str = ""
     sleutelcompetentie: str = ""
 
-    def key(self) -> tuple[str, str, str]:
-        return (self.netwerk, self.code, self.titel.casefold())
+    def key(self) -> tuple[str, ...]:
+        return (
+            self.netwerk, self.code, self.titel.casefold(), self.onderwijsniveau,
+            self.graad, self.finaliteit, self.stroom, self.leerjaar_route,
+            self.discipline, self.subdomein, self.bron_url,
+        )
 
 
 class SecondaryCurriculumScraper:
@@ -465,7 +469,7 @@ class SecondaryCurriculumScraper:
 
     @staticmethod
     def _dedupe_records(records: list[GoalRecord]) -> list[GoalRecord]:
-        unique: dict[tuple[str, str, str], GoalRecord] = {}
+        unique: dict[tuple[str, ...], GoalRecord] = {}
         for record in records:
             unique.setdefault(record.key(), record)
         return list(unique.values())
@@ -511,6 +515,12 @@ def parse_pdf(payload: bytes, source: SourceDocument) -> list[GoalRecord]:
             code = clean_text(match.group(1))
             block_end = matches[index + 1].start() if index + 1 < len(matches) else len(text)
             block = text[match.end() : block_end]
+            # GO! introductory numbering examples also contain valid goal codes.
+            # Only actual learner statements belong in the goal corpus.
+            if source.provider == "GO" and not re.search(
+                r"\bDe (?:leerling|leerlingen)\b", clean_text(block)
+            ):
+                continue
             title = extract_goal_sentence(block)
             if not title:
                 continue

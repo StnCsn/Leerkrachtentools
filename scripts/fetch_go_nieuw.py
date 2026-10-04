@@ -251,6 +251,9 @@ class GoNieuwFetcher:
                 doelenset_nummer=int(link["doelenset_nummer"]),
                 discipline=link["discipline"],
             )
+            for record in parsed:
+                record["bron_url"] = link["url"]
+                record["bron_titel"] = link["label"]
             logger.info(
                 "Geparst: %s → %s doelen",
                 link["discipline"],
