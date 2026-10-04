@@ -1,5 +1,71 @@
 # Aanvullende scraper- en corpuscontrole — 3 oktober 2026
 
+## Reviewaanvulling — 4 oktober 2026
+
+Reviewbasis PR #35: `89855a1acc7daf82276017e95947367958e340f5`.
+De onderstaande resultaten van 3 oktober blijven historisch bewijs. Deze aanvulling
+beschrijft de twee nieuwe reviewbevindingen en de actuele Pythoncontrole; de volledige
+GitHub-resultaten op de definitieve head worden in de PRbeschrijving vastgelegd.
+
+**Overlappende pagina's.** De concrete pagina's `[A, B]` en `[B, C]`, beide met
+`totalItems=4`, kwamen vóór de fix als vier records terug ondanks slechts drie unieke
+doelen. De nieuwe regressie faalde op de reviewbasis. Ook een duplicaat binnen één pagina
+en dezelfde code/context met gewijzigde tekst konden het totaal ten onrechte vullen.
+Alle drie negatieve regressies falen vóór de fix en slagen daarna.
+
+`fetch_all_goals` weigert nu overlap vóór het tellen/retourneren. Identiteit gebruikt
+`code`, het volledige `onderwijsdoelenset`-object (inclusief onderwijsstructuur en
+sleutelcompetentie), `onderwijsdoel_type` en `_dataset`, canoniek met gesorteerde objectkeys.
+Doeltekst, notities en losse top-level responsemetadata zijn geen nieuwe identiteit.
+Ontbreekt een code, dan gebruikt de controle het volledige ruwe record als conservatieve
+fallback. Er worden geen doelcodes of contextvelden verzonnen of genormaliseerd.
+Positieve regressies behouden dezelfde code in verschillende doelensets, opleidingsvormen,
+doeltypes en datasets. Veldvolgorde maakt een doel niet uniek. Een overlappende of tussentijds
+gewijzigde fetch moet opnieuw consistent worden opgehaald; er volgt geen stilzwijgende
+deduplicatie die onvolledigheid als succes presenteert. De actuele bronschema's blijven
+onbevestigd door de netwerkblokkade; geneste context is daarom volledig behouden.
+
+**Redirects met API-keys.** De standaard urllib-opener kopieerde `x-api-key` naar een andere
+host en bij HTTPS-naar-HTTP. Eigen loopbackservers ontvingen de synthetische key daadwerkelijk
+vóór de fix. Er zijn ook lekpaden bevestigd bij POV-list, POV-detail en de oudere raw
+minimumdoelen-API. Geen echte credentials of externe bestemming gebruikt.
+
+| Curriculum-fetchpad | Header | Controle na reviewfix |
+| --- | --- | --- |
+| `onderwijsdoelen_api_client._get_json` | `x-api-key` | Echte urllib-opener met redirect-handler die vóór elke vervolgaanvraag weigert; 3xx blijft HTTPfout en wordt niet opnieuw geprobeerd |
+| `SecondaryMinimumGoalsFetcher.run` | `apikey` | Bestaande `allow_redirects=False` en origincontrole behouden; nu ook met echte requests/servers bewezen |
+| `PovCurriculumFetcher.run`, list én detail | `api-key` | Beide aanvragen `allow_redirects=False`; 3xx expliciet geweigerd |
+| `MinimumdoelenFetcher._fetch_api` | `apikey` | `allow_redirects=False`; 3xx als mislukte bronaanvraag, geen export |
+| Publieke `CurriculumDownloader` PDF/HTML | Geen API-key | Bestaande publieke redirects behouden; APIheader blijft per request en staat niet op de gedeelde downloader-session |
+
+Alle 301/302/303/307/308-paden zijn getest met eigen lokale servers; ook same-origin redirects
+worden door urllib geweigerd. De HTTPS-downgradetest gebruikt een echte opener/errorprocessor
+met uitsluitend de eerste HTTPS-transportresponse synthetisch; de eventuele HTTPbestemming
+is een echte loopbackserver. Dit is transportmocking, geen bewijs van TLSconfiguratie op een
+live bron. Na de fix ontvingen redirectbestemmingen **geen request**, dus ook geen key.
+Er zijn 31 redirectscenario's verdeeld over vijf testmethoden, plus positieve echte
+JSON/list/detail-verwerking voor alle vier APIclients. Proxy-, CA- en TLSdefaults blijven
+behouden; geen globale urllib-opener vervangen en geen TLScontrole uitgeschakeld.
+
+De huidige volledige Python-suite telt **64 geslaagde tests**, met syntaxcontrole van
+**43 Python-bestanden**. De bestaande 48 tests blijven behouden. De vóór-fix-run had drie
+nieuwe overlapfailures en 26 redirect-subtestfailures; de reeds beschermde secundaire
+API slaagde ook vóór de wijzigingen. Reproduceerbaar met de bestaande venv/wrapper:
+
+```bash
+bash /workspace/.onboarding/run-test-env.sh timeout 60 /workspace/.onboarding/corpus-validation-2026-10-03/venv/bin/python -m unittest discover -s scripts/tests -v
+```
+
+Lokale sockets vereisen in deze cloud de normale escalatieroute. De tests starten uitsluitend
+twee eigen loopbackservers, doen sequentiële aanvragen en sluiten servers/sessions af.
+Private vóór/na-logs en key-receiptbewijs zonder keywaarden staan in
+`/workspace/.onboarding/pr35-review-2026-10-04/`; `review-evidence.json` bewaart de hashes.
+De tests zijn in de bestaande quality-job opgenomen, zonder gewijzigde controles, audit,
+drempels, branchbescherming, merge of deployment. De tijdelijke braces-mitigatie blijft
+ongewijzigd, zichtbaar en verloopt op `2026-10-17T00:00:00.000Z`.
+
+## Oorspronkelijke uitvoering — 3 oktober 2026
+
 Begincommit actuele main: `9359f8031b8e45445875a17936de776f432bf543`.
 Branch: `codex/scraper-corpus-validation-2026-10-03`.
 De definitieve headcommit en GitHub-resultaten staan in de bijbehorende PRbeschrijving.

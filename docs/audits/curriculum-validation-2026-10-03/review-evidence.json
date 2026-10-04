@@ -1,0 +1,38 @@
+{
+  "reviewBaseCommit": "89855a1acc7daf82276017e95947367958e340f5",
+  "originalMainCommit": "9359f8031b8e45445875a17936de776f432bf543",
+  "observedAt": "2026-10-04T08:41:47.000879+00:00",
+  "pythonSyntaxFiles": 43,
+  "pythonTestsPassed": 64,
+  "overlapBefore": {
+    "testMethodsRun": 15,
+    "failingMethods": 3
+  },
+  "redirectsBefore": {
+    "testMethodsRun": 7,
+    "failingSubtests": 26,
+    "keyReceiptConfirmedPaths": [
+      "urllib",
+      "pov_list",
+      "pov_detail",
+      "raw_minimum",
+      "https_downgrade"
+    ]
+  },
+  "redirectsAfter": {
+    "scenarioCount": 31,
+    "destinationRequests": 0,
+    "initialKey": "synthetic only; values omitted"
+  },
+  "realSourceValidation": "Historical blocked outcome retained; no live source or credentials used for this review",
+  "localLinuxIsolation": "GEBLOKKEERD; no hostroot/systemd/writable cgroups",
+  "evidenceLocation": "/workspace/.onboarding/pr35-review-2026-10-04",
+  "evidenceSha256": {
+    "key-leak-before.json": "d6d22201b2ba20158f640aa9a1ee3a2dcc33b4cf83fbaec16db61575bea24d1e",
+    "overlap-before.log": "355b695574ded3e3b969954dda098557f3371d80073173cbf9f57d049eaae51f",
+    "python-after.log": "514db5902e0e7f87ad68af70b1dfe02f2e05763cbd231db7b544af4c55f6d974",
+    "python-final.log": "1041880e853d853c3ba58eaec9034e60b7d4bee97300b0b2a691e5355c29cad3",
+    "redirects-before.log": "f0804eab608c7313c138ba3505d59ab07d2ed91c5f04e038a1f89c19794661d8"
+  },
+  "githubFinalResults": "See final PR description/status.json outside Git; full CI will run on final head."
+}

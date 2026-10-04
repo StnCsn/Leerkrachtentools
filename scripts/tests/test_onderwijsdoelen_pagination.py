@@ -3,7 +3,7 @@ from __future__ import annotations
 import sys
 import unittest
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 from urllib.error import HTTPError
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -49,12 +49,59 @@ class OnderwijsdoelenPaginationTests(unittest.TestCase):
                 self.fetch([payload])
 
     def test_http_404_is_not_an_empty_terminal_page(self):
-        with patch("onderwijsdoelen_api_client.urlopen", side_effect=HTTPError("https://example.test", 404, "Not found", {}, None)) as request:
+        opener = Mock()
+        opener.open.side_effect = HTTPError("https://example.test", 404, "Not found", {}, None)
+        with patch("onderwijsdoelen_api_client.build_opener", return_value=opener):
             with self.assertRaises(HTTPError):
                 _get_json("https://example.test", "synthetic-test-key")
-        request.assert_called_once()
+        opener.open.assert_called_once()
 
     def test_invalid_or_exceeded_reported_total_fails(self):
         for total in [True, "unknown", -1, 0]:
             with self.subTest(total=total), self.assertRaisesRegex(RuntimeError, "ongeldig"):
                 self.fetch([page([{"code": "1"}], total)])
+
+    def test_overlapping_pages_cannot_satisfy_reported_total(self):
+        with self.assertRaisesRegex(RuntimeError, "overlap"):
+            self.fetch([
+                page([{"code": "A"}, {"code": "B"}], 4),
+                page([{"code": "B"}, {"code": "C"}], 4),
+            ])
+
+    def test_duplicate_within_one_page_cannot_satisfy_total(self):
+        with self.assertRaisesRegex(RuntimeError, "overlap"):
+            self.fetch([page([{"code": "A"}, {"code": "A"}], 2)])
+
+    def test_same_code_in_different_goal_sets_is_preserved(self):
+        records = [
+            {"code": "A", "onderwijsdoelenset": {"onderwijsdoelenset": "Set 1", "onderwijsstructuur": {"graad": "1ste graad"}}},
+            {"code": "A", "onderwijsdoelenset": {"onderwijsdoelenset": "Set 2", "onderwijsstructuur": {"graad": "2de graad"}}},
+        ]
+        self.assertEqual(self.fetch([page([records[0]], 2), page([records[1]], 2)]), records)
+
+    def test_same_code_and_context_with_changed_text_is_not_a_new_goal(self):
+        first = {"code": "A", "onderwijsdoelenset": {"onderwijsdoelenset": "Set 1"}, "omschrijving": "First text"}
+        changed = {"omschrijving": "Changed text", "onderwijsdoelenset": {"onderwijsdoelenset": "Set 1"}, "code": "A"}
+        with self.assertRaisesRegex(RuntimeError, "overlap"):
+            self.fetch([page([first], 2), page([changed], 2)])
+
+    def test_context_key_order_does_not_make_a_goal_unique(self):
+        first = {"code": "A", "onderwijsdoelenset": {"onderwijsdoelenset": "Set 1", "onderwijsstructuur": {"graad": "1ste graad"}}}
+        reordered = {"onderwijsdoelenset": {"onderwijsstructuur": {"graad": "1ste graad"}, "onderwijsdoelenset": "Set 1"}, "code": "A"}
+        with self.assertRaisesRegex(RuntimeError, "overlap|herhaalde pagina"):
+            self.fetch([page([first], 2), page([reordered], 2)])
+
+    def test_goal_type_and_dataset_are_part_of_context(self):
+        records = [
+            {"code": "A", "onderwijsdoel_type": "Eindterm", "_dataset": "SET_1"},
+            {"code": "A", "onderwijsdoel_type": "Ontwikkelingsdoel", "_dataset": "SET_1"},
+            {"code": "A", "onderwijsdoel_type": "Eindterm", "_dataset": "SET_2"},
+        ]
+        self.assertEqual(self.fetch([page(records, 3)]), records)
+
+    def test_same_code_and_set_name_in_distinct_structures_is_preserved(self):
+        records = [
+            {"code": "A", "onderwijsdoelenset": {"onderwijsdoelenset": "Set 1", "onderwijsstructuur": {"opleidingsvorm": "OV1"}}},
+            {"code": "A", "onderwijsdoelenset": {"onderwijsdoelenset": "Set 1", "onderwijsstructuur": {"opleidingsvorm": "OV2"}}},
+        ]
+        self.assertEqual(self.fetch([page(records, 2)]), records)

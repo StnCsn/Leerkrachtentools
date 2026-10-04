@@ -10,7 +10,7 @@ import time
 from pathlib import Path
 from typing import Any, Iterable
 from urllib.error import HTTPError
-from urllib.request import Request, urlopen
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 from education_record_schema import normalize_api_goal_record
 from local_env import load_local_env
@@ -22,6 +22,29 @@ USER_AGENT = (
     "Leerkrachtentools-onderwijsdoelen/1.0 "
     "(publieke onderwijsdata; https://github.com/tibodepauw/Leerkrachtentools)"
 )
+
+
+class _RejectApiRedirects(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        # urllib otherwise copies x-api-key, including cross-host/downgrade hops.
+        # Returning None makes the real error handler raise before any next hop.
+        return None
+
+
+def _goal_identity(record: dict[str, Any]) -> str:
+    """Code is scoped to its complete goal-set/type/dataset context, not global.
+
+    Text/notes and top-level response metadata cannot turn the same goal into a
+    new entity. Preserve the complete goal-set object, including its structure,
+    instead of guessing which source context fields distinguish two goals.
+    """
+    if record.get("code") is not None:
+        identity = {field: record.get(field) for field in (
+            "code", "onderwijsdoelenset", "onderwijsdoel_type", "_dataset",
+        )}
+    else:
+        identity = record
+    return json.dumps(identity, sort_keys=True, separators=(",", ":"))
 
 
 def resolve_api_key(api_key: str | None = None) -> str:
@@ -49,6 +72,7 @@ def fetch_all_goals(
     collected: list[dict[str, Any]] = []
     expected_total: int | None = None
     seen_pages: set[str] = set()
+    seen_records: set[str] = set()
     for page in range(1, max_pages + 1):
         url = (
             f"{DEFAULT_API_BASE}/onderwijsdoel?"
@@ -75,6 +99,11 @@ def fetch_all_goals(
         if fingerprint in seen_pages:
             raise RuntimeError("Onderwijsdoelen API: herhaalde pagina; volledigheid niet bewezen.")
         seen_pages.add(fingerprint)
+        for member in members:
+            identity = _goal_identity(member)
+            if identity in seen_records:
+                raise RuntimeError("Onderwijsdoelen API: overlap van doelrecords; volledigheid niet bewezen.")
+            seen_records.add(identity)
         collected.extend(members)
         logger.info(
             "API pagina %s: +%s doelen (totaal %s / %s)",
@@ -92,6 +121,8 @@ def fetch_all_goals(
 
 
 def _get_json(url: str, api_key: str, retries: int = 4) -> dict[str, Any]:
+    # Default proxy/CA/TLS handlers remain intact; only redirects are refused.
+    opener = build_opener(_RejectApiRedirects())
     last_error: Exception | None = None
     for attempt in range(retries):
         try:
@@ -103,7 +134,7 @@ def _get_json(url: str, api_key: str, retries: int = 4) -> dict[str, Any]:
                     "User-Agent": USER_AGENT,
                 },
             )
-            with urlopen(request, timeout=90) as response:
+            with opener.open(request, timeout=90) as response:
                 return json.loads(response.read().decode("utf-8"))
         except HTTPError as exc:
             last_error = exc

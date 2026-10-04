@@ -177,7 +177,7 @@ class PovCurriculumFetcher:
         )
 
     def run(self) -> list[dict[str, Any]]:
-        response = self.session.get(f"{API_BASE}/list", timeout=self.timeout)
+        response = self.session.get(f"{API_BASE}/list", timeout=self.timeout, allow_redirects=False)
         self._check_response(response)
         curricula = object_list(response.json())
         if self.limit is not None:
@@ -196,6 +196,7 @@ class PovCurriculumFetcher:
                 detail = self.session.get(
                     f"{API_BASE}/{curriculum_id}/detailed",
                     timeout=self.timeout,
+                    allow_redirects=False,
                 )
                 self._check_response(detail)
                 goals = object_list(detail.json())
@@ -219,6 +220,8 @@ class PovCurriculumFetcher:
 
     @staticmethod
     def _check_response(response: requests.Response) -> None:
+        if 300 <= response.status_code < 400:
+            raise RuntimeError("POV API: redirect geweigerd; API-key niet doorgestuurd. Gebruik het gecontroleerde eindpunt.")
         if response.status_code in (401, 403):
             raise RuntimeError(
                 "POV API weigert de api-key. Vraag een sleutel aan via het "
