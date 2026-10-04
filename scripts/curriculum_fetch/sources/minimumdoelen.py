@@ -142,7 +142,10 @@ class MinimumdoelenFetcher(SourceFetcher):
                 params=params,
                 headers=headers,
                 timeout=self.downloader.timeout,
+                allow_redirects=False,
             )
+            if 300 <= response.status_code < 400:
+                raise requests.HTTPError("Onderwijsdoelen API: redirect geweigerd; API-key niet doorgestuurd.", response=response)
             if response.status_code == 404:
                 logger.error(
                     "Onderwijsdoelen-API-endpoint niet gevonden (%s). "
